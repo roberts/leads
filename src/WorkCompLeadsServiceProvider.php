@@ -16,6 +16,10 @@ class WorkCompLeadsServiceProvider extends TipoffServiceProvider
         parent::boot();
 
         Livewire::component('onboarding-form', OnboardingForm::class);
+
+        $this->publishes([
+            __DIR__.'/../dist' => public_path('vendor/work-comp-leads'),
+        ], 'public');
     }
 
     public function configureTipoffPackage(TipoffPackage $package): void
