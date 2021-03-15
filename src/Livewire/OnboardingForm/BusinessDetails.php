@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\OnboardingForm;
+namespace Roberts\WorkCompLeads\Livewire\OnboardingForm;
 
-use App\Enums\OnboardingFormStep;
+use Roberts\WorkCompLeads\Enums\OnboardingFormStep;
 
 class BusinessDetails extends OnboardingFormStepComponent
 {

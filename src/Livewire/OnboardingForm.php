@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace Roberts\WorkCompLeads\Livewire;
 
 use App\Enums\OnboardingFormStep;
-use App\Models\WcLead;
 use Livewire\Component;
 
 class OnboardingForm extends Component

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\OnboardingForm;
+namespace Roberts\WorkCompLeads\Livewire\OnboardingForm;
 
 use Livewire\Component;
 
