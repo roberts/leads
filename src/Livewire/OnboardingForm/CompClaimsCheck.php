@@ -10,6 +10,8 @@ class CompClaimsCheck extends OnboardingFormStepComponent
         'attributes.had_claims' => 'required|boolean',
     ];
 
+    protected $validationAttributes = [];
+
     public function render()
     {
         return view('livewire.onboarding-form.comp-claims-check');

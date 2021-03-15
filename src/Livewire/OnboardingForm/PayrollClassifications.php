@@ -12,6 +12,8 @@ class PayrollClassifications extends OnboardingFormStepComponent
         'attributes.annual_payroll' => 'required',
     ];
 
+    protected $validationAttributes = [];
+
     public function render()
     {
         return view('livewire.onboarding-form.payroll-classifications');

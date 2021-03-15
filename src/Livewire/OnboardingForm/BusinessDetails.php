@@ -13,6 +13,8 @@ class BusinessDetails extends OnboardingFormStepComponent
         'attributes.year_of_establishment' => 'required',
     ];
 
+    protected $validationAttributes = [];
+
     public function render()
     {
         return view('livewire.onboarding-form.business-details');

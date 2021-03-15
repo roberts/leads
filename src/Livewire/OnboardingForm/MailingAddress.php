@@ -13,6 +13,8 @@ class MailingAddress extends OnboardingFormStepComponent
         'attributes.state' => 'required',
     ];
 
+    protected $validationAttributes = [];
+
     public function render()
     {
         return view('livewire.onboarding-form.mailing-address');

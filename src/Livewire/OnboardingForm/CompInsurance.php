@@ -11,6 +11,8 @@ class CompInsurance extends OnboardingFormStepComponent
         'attributes.current_plan_expires_at' => 'required',
     ];
 
+    protected $validationAttributes = [];
+
     public function render()
     {
         return view('livewire.onboarding-form.comp-insurance');

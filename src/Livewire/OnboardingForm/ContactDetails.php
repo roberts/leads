@@ -13,6 +13,8 @@ class ContactDetails extends OnboardingFormStepComponent
         'attributes.phone_number' => 'required',
     ];
 
+    protected $validationAttributes = [];
+
     public function render()
     {
         return view('livewire.onboarding-form.contact-details');

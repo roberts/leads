@@ -10,6 +10,8 @@ class CompInsuranceCheck extends OnboardingFormStepComponent
         'attributes.has_comp_insurance' => 'required|boolean',
     ];
 
+    protected $validationAttributes = [];
+
     public function render()
     {
         return view('livewire.onboarding-form.comp-insurance-check');
