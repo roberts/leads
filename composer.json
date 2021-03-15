@@ -57,11 +57,5 @@
         }
     ],
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "post-install-cmd": [
-        "php artisan vendor:publish --tag=public --force"
-    ],
-    "post-update-cmd": [
-        "php artisan vendor:publish --tag=public --force"
-    ]
+    "prefer-stable": true
 }

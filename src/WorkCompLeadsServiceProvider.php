@@ -15,10 +15,6 @@ class WorkCompLeadsServiceProvider extends TipoffServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'wc');
 
-        $this->publishes([
-            __DIR__.'/../dist' => public_path('vendor/work-comp-leads'),
-        ], 'public');
-
         $this->registerLivewireComponents();
     }
 
@@ -26,7 +22,8 @@ class WorkCompLeadsServiceProvider extends TipoffServiceProvider
     {
         $package
             ->name('work-comp-leads')
-            ->hasConfigFile();
+            ->hasConfigFile()
+            ->hasAssets();
     }
 
     protected function registerLivewireComponents()
