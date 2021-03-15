@@ -2,7 +2,6 @@
 
 namespace Roberts\WorkCompLeads;
 
-use Illuminate\Support\Facades\Config;
 use Livewire\Livewire;
 use Roberts\WorkCompLeads\Livewire\OnboardingForm;
 use Tipoff\Support\TipoffPackage;
@@ -32,8 +31,6 @@ class WorkCompLeadsServiceProvider extends TipoffServiceProvider
 
     protected function registerLivewireComponents()
     {
-        Config::set('livewire.class_namespace', 'Roberts\\WorkCompLeads\\Livewire');
-
         Livewire::component('wc::onboarding-form', OnboardingForm::class);
         Livewire::component('wc::presentation', OnboardingForm\Presentation::class);
         Livewire::component('wc::contact-details', OnboardingForm\ContactDetails::class);
