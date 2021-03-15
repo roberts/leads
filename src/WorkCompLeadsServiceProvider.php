@@ -15,11 +15,13 @@ class WorkCompLeadsServiceProvider extends TipoffServiceProvider
     {
         parent::boot();
 
-        Livewire::component('onboarding-form', OnboardingForm::class);
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'wc');
 
         $this->publishes([
             __DIR__.'/../dist' => public_path('vendor/work-comp-leads'),
         ], 'public');
+
+        $this->registerLivewireComponents();
     }
 
     public function configureTipoffPackage(TipoffPackage $package): void
@@ -27,5 +29,10 @@ class WorkCompLeadsServiceProvider extends TipoffServiceProvider
         $package
             ->name('work-comp-leads')
             ->hasConfigFile();
+    }
+
+    protected function registerLivewireComponents()
+    {
+        Livewire::component('wc::onboarding-form', OnboardingForm::class);
     }
 }
