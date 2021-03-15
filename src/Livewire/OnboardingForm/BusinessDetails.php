@@ -22,6 +22,8 @@ class BusinessDetails extends OnboardingFormStepComponent
 
     public function processLead(array $data)
     {
+        $this->lead->business->update($data);
+
         return $this->lead;
     }
 

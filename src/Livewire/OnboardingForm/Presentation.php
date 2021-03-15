@@ -3,6 +3,8 @@
 namespace Roberts\WorkCompLeads\Livewire\OnboardingForm;
 
 use Roberts\WorkCompLeads\Enums\OnboardingFormStep;
+use Roberts\WorkCompLeads\Models\WcBusiness;
+use Roberts\WorkCompLeads\Models\WcLead;
 
 class Presentation extends OnboardingFormStepComponent
 {
@@ -11,6 +13,8 @@ class Presentation extends OnboardingFormStepComponent
         'attributes.business.name' => 'required',
     ];
 
+    protected $validationAttributes = [];
+
     public function render()
     {
         return view('livewire.onboarding-form.presentation');
@@ -18,7 +22,12 @@ class Presentation extends OnboardingFormStepComponent
 
     public function processLead(array $data)
     {
-        return WcLead::factory()->create();
+        $business = WcBusiness::create($data['business']);
+
+        return WcLead::create([
+            'email' => $data['email'],
+            'wc_business_id' => $business->id,
+        ]);
     }
 
     public function getNextStep()
