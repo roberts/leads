@@ -2,7 +2,7 @@
 
 namespace Roberts\WorkCompLeads\Livewire;
 
-use App\Enums\OnboardingFormStep;
+use Roberts\WorkCompLeads\Enums\OnboardingFormStep;
 use Livewire\Component;
 
 class OnboardingForm extends Component
