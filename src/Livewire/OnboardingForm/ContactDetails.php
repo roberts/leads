@@ -17,7 +17,7 @@ class ContactDetails extends OnboardingFormStepComponent
 
     public function render()
     {
-        return view('livewire.onboarding-form.contact-details');
+        return view('sl::livewire.onboarding-form.contact-details');
     }
 
     public function processLead(array $data)

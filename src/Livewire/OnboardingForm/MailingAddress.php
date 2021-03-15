@@ -17,7 +17,7 @@ class MailingAddress extends OnboardingFormStepComponent
 
     public function render()
     {
-        return view('livewire.onboarding-form.mailing-address');
+        return view('sl::livewire.onboarding-form.mailing-address');
     }
 
     public function processLead(array $data)

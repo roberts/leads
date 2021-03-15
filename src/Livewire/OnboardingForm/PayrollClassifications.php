@@ -16,7 +16,7 @@ class PayrollClassifications extends OnboardingFormStepComponent
 
     public function render()
     {
-        return view('livewire.onboarding-form.payroll-classifications');
+        return view('sl::livewire.onboarding-form.payroll-classifications');
     }
 
     public function processLead(array $data)

@@ -8,6 +8,6 @@ class Completed extends Component
 {
     public function render()
     {
-        return view('livewire.onboarding-form.completed');
+        return view('sl::livewire.onboarding-form.completed');
     }
 }
