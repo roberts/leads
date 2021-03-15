@@ -16,6 +16,7 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
+        "livewire/livewire": "^2.4",
         "tipoff/authorization": "^2.5.5",
         "tipoff/support": "^1.6.3"
     },
