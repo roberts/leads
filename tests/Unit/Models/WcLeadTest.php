@@ -11,7 +11,8 @@ use Roberts\WorkCompLeads\Tests\TestCase;
 
 class WcLeadTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /** @test */
     public function it_has_an_email()

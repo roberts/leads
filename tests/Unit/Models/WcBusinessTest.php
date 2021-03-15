@@ -2,14 +2,15 @@
 
 namespace Roberts\WorkCompLeads\Tests\Unit\Models;
 
-use Roberts\WorkCompLeads\Models\WcBusiness;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Roberts\WorkCompLeads\Models\WcBusiness;
 use Roberts\WorkCompLeads\Tests\TestCase;
 
 class WcBusinessTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /** @test */
     public function it_has_a_name()
