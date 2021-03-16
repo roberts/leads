@@ -61,7 +61,7 @@ class WcLeadTest extends TestCase
     /** @test */
     public function it_has_the_expiration_date_for_the_current_comp_plan()
     {
-        $lead = WcLead::factory()->create(['current_plan_expires_at' => $this->faker->dateTime]);
+        $lead = WcLead::factory()->create(['current_plan_expires_at' => $this->faker->date]);
 
         $this->assertInstanceOf(Carbon::class, $lead->current_plan_expires_at);
     }

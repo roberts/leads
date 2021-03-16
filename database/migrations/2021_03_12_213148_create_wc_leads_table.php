@@ -21,7 +21,7 @@ class CreateWcLeadsTable extends Migration
             $table->string('position')->nullable();
             $table->string('phone_number')->nullable();
             $table->boolean('current_plan_under_cancellation')->nullable();
-            $table->datetime('current_plan_expires_at')->nullable();
+            $table->date('current_plan_expires_at')->nullable();
             $table->text('past_comp_claims')->nullable();
             $table->unsignedBigInteger('wc_business_id');
             $table->timestamps();

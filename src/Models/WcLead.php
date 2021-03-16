@@ -12,7 +12,7 @@ class WcLead extends BaseModel
     protected $guarded = [];
 
     protected $casts = [
-        'current_plan_expires_at' => 'datetime',
+        'current_plan_expires_at' => 'date',
     ];
 
     public function business()
