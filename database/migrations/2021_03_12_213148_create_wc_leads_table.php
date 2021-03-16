@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateWcLeadsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('wc_leads', function (Blueprint $table) {
@@ -26,15 +21,5 @@ class CreateWcLeadsTable extends Migration
             $table->unsignedBigInteger('wc_business_id');
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('wc_leads');
     }
 }
