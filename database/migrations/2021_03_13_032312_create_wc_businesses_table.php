@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateWcBusinessesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('wc_businesses', function (Blueprint $table) {
@@ -22,15 +17,5 @@ class CreateWcBusinessesTable extends Migration
             $table->string('legal_entity_type')->nullable();
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('wc_businesses');
     }
 }
