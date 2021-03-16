@@ -8,8 +8,8 @@ class PayrollClassifications extends OnboardingFormStepComponent
 {
     protected $rules = [
         'attributes.class_code' => 'required',
-        'attributes.number_of_employees' => 'required',
-        'attributes.annual_payroll' => 'required',
+        'attributes.number_of_employees' => 'required|integer',
+        'attributes.annual_payroll' => 'required|numeric',
     ];
 
     protected $validationAttributes = [];

@@ -10,7 +10,7 @@ class BusinessDetails extends OnboardingFormStepComponent
         'attributes.nature' => 'required',
         'attributes.legal_entity_type' => 'required',
         'attributes.fein' => 'required',
-        'attributes.year_of_establishment' => 'required',
+        'attributes.year_of_establishment' => 'required|integer',
     ];
 
     protected $validationAttributes = [];

@@ -8,7 +8,7 @@ class CompInsurance extends OnboardingFormStepComponent
 {
     protected $rules = [
         'attributes.current_plan_under_cancellation' => 'required|boolean',
-        'attributes.current_plan_expires_at' => 'required',
+        'attributes.current_plan_expires_at' => 'required|date',
     ];
 
     protected $validationAttributes = [];
