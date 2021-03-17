@@ -2,12 +2,12 @@
 
 namespace Roberts\WorkCompLeads\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasPackageFactory;
 
-class WcPayrollClassification extends Model
+class WcPayrollClassification extends BaseModel
 {
-    use HasFactory;
+    use HasPackageFactory;
 
     protected $guarded = [];
 
