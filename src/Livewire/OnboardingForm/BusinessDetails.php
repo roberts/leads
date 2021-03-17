@@ -17,7 +17,7 @@ class BusinessDetails extends OnboardingFormStepComponent
 
     public function render()
     {
-        return view('sl::livewire.onboarding-form.business-details');
+        return view('livewire.onboarding-form.business-details');
     }
 
     public function processLead(array $data)

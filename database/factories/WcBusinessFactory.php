@@ -23,10 +23,18 @@ class WcBusinessFactory extends Factory
     {
         return [
             'name' => $this->faker->company,
-            'nature' => $this->faker->word,
-            'fein' => $this->faker->uuid,
-            'year_of_establishment' => $this->faker->numberBetween(1900, 2010),
-            'legal_entity_type' => $this->faker->word,
         ];
+    }
+
+    public function withNullableFields()
+    {
+        return $this->state(function () {
+            return [
+                'nature' => $this->faker->word,
+                'fein' => $this->faker->uuid,
+                'year_of_establishment' => $this->faker->numberBetween(1900, 2010),
+                'legal_entity_type' => $this->faker->word,
+            ];
+        });
     }
 }
