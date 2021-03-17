@@ -21,6 +21,8 @@ class PayrollClassifications extends OnboardingFormStepComponent
 
     public function processLead(array $data)
     {
+        $this->lead->payrollClassifications()->create($data);
+
         return $this->lead;
     }
 
