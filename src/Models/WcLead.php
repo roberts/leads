@@ -19,4 +19,9 @@ class WcLead extends BaseModel
     {
         return $this->belongsTo(WcBusiness::class, 'wc_business_id');
     }
+
+    public function payrollClassifications()
+    {
+        return $this->hasMany(WcPayrollClassification::class);
+    }
 }

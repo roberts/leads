@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Carbon;
 use Roberts\WorkCompLeads\Models\WcBusiness;
 use Roberts\WorkCompLeads\Models\WcLead;
+use Roberts\WorkCompLeads\Models\WcPayrollClassification;
 use Roberts\WorkCompLeads\Tests\TestCase;
 
 class WcLeadTest extends TestCase
@@ -91,5 +92,16 @@ class WcLeadTest extends TestCase
         $lead = WcLead::factory()->create();
 
         $this->assertInstanceOf(WcBusiness::class, $lead->business);
+    }
+
+    /** @test */
+    public function it_has_payroll_classifications()
+    {
+        $lead = WcLead::factory()->create();
+
+        WcPayrollClassification::factory()->create(['wc_lead_id' => $lead->id]);
+
+        $this->assertCount(1, $lead->payrollClassifications);
+        $this->assertInstanceOf(WcPayrollClassification::class, $lead->payrollClassifications->first());
     }
 }
