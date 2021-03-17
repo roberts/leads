@@ -9,7 +9,7 @@ use Roberts\WorkCompLeads\Models\WcLead;
 use Roberts\WorkCompLeads\Models\WcPayrollClassification;
 use Roberts\WorkCompLeads\Tests\TestCase;
 
-class CreatePayrollClassificationTest extends TestCase
+class PayrollClassificationsTest extends TestCase
 {
     use RefreshDatabase;
 

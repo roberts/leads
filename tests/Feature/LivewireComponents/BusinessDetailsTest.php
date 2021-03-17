@@ -9,12 +9,12 @@ use Roberts\WorkCompLeads\Models\WcBusiness;
 use Roberts\WorkCompLeads\Models\WcLead;
 use Roberts\WorkCompLeads\Tests\TestCase;
 
-class CreateBusinessDetailsTest extends TestCase
+class BusinessDetailsTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function a_user_can_add_a_business()
+    public function a_user_can_add_business_details()
     {
         $business = WcBusiness::factory()->create();
         $lead = WcLead::factory()->create(['wc_business_id' => $business->id]);
