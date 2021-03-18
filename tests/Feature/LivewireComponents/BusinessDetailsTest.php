@@ -5,8 +5,8 @@ namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Roberts\Leads\Livewire\OnboardingForm\BusinessDetails;
-use Roberts\Leads\Models\WcBusiness;
 use Roberts\Leads\Models\Lead;
+use Roberts\Leads\Models\WcBusiness;
 use Roberts\Leads\Tests\TestCase;
 
 class BusinessDetailsTest extends TestCase

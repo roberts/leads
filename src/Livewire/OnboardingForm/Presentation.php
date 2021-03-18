@@ -3,8 +3,8 @@
 namespace Roberts\Leads\Livewire\OnboardingForm;
 
 use Roberts\Leads\Enums\OnboardingFormStep;
-use Roberts\Leads\Models\WcBusiness;
 use Roberts\Leads\Models\Lead;
+use Roberts\Leads\Models\WcBusiness;
 
 class Presentation extends OnboardingFormStepComponent
 {
