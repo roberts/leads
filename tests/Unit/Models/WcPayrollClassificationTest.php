@@ -10,7 +10,8 @@ use Roberts\WorkCompLeads\Tests\TestCase;
 
 class WcPayrollClassificationTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /** @test */
     public function it_has_a_class_code()
