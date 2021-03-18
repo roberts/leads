@@ -26,13 +26,13 @@ class PresentationTest extends TestCase
             ->set('attributes.business.name', $attributes['business_name'])
             ->call('submit');
 
-        $this->assertDatabaseHas('wc_businesses', [
+        $this->assertDatabaseHas('lead_businesses', [
             'name' => $attributes['business_name'],
         ]);
 
         $this->assertDatabaseHas('leads', [
             'email' => $attributes['email'],
-            'wc_business_id' => 1,
+            'lead_business_id' => 1,
         ]);
     }
 

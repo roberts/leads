@@ -3,28 +3,18 @@
 namespace Roberts\Leads\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Roberts\Leads\Models\WcBusiness;
+use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Models\Lead;
 
 class LeadFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Lead::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
         return [
             'email' => $this->faker->email,
-            'wc_business_id' => WcBusiness::factory(),
+            'lead_business_id' => LeadBusiness::factory(),
         ];
     }
 
@@ -39,7 +29,7 @@ class LeadFactory extends Factory
                 'current_plan_under_cancellation' => $this->faker->boolean,
                 'current_plan_expires_at' => $this->faker->date,
                 'past_comp_claims' => $this->faker->paragraph,
-                'wc_business_id' => WcBusiness::factory(),
+                'lead_business_id' => LeadBusiness::factory(),
             ];
         });
     }

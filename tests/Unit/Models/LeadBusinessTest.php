@@ -4,10 +4,10 @@ namespace Roberts\Leads\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Roberts\Leads\Models\WcBusiness;
+use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Tests\TestCase;
 
-class WcBusinessTest extends TestCase
+class LeadBusinessTest extends TestCase
 {
     use RefreshDatabase;
     use WithFaker;
@@ -16,7 +16,7 @@ class WcBusinessTest extends TestCase
     public function it_has_a_name()
     {
         $name = $this->faker->company;
-        $business = WcBusiness::factory()->create(['name' => $name]);
+        $business = LeadBusiness::factory()->create(['name' => $name]);
 
         $this->assertEquals($name, $business->name);
     }
@@ -25,7 +25,7 @@ class WcBusinessTest extends TestCase
     public function it_has_a_nature()
     {
         $nature = $this->faker->word;
-        $business = WcBusiness::factory()->create(['nature' => $nature]);
+        $business = LeadBusiness::factory()->create(['nature' => $nature]);
 
         $this->assertEquals($nature, $business->nature);
     }
@@ -34,7 +34,7 @@ class WcBusinessTest extends TestCase
     public function it_has_a_fein()
     {
         $fein = $this->faker->uuid;
-        $business = WcBusiness::factory()->create(['fein' => $fein]);
+        $business = LeadBusiness::factory()->create(['fein' => $fein]);
 
         $this->assertEquals($fein, $business->fein);
     }
@@ -43,7 +43,7 @@ class WcBusinessTest extends TestCase
     public function it_has_the_year_of_establishment()
     {
         $year = $this->faker->numberBetween(1900, 2010);
-        $business = WcBusiness::factory()->create(['year_of_establishment' => $year]);
+        $business = LeadBusiness::factory()->create(['year_of_establishment' => $year]);
 
         $this->assertEquals($year, $business->year_of_establishment);
     }
@@ -52,7 +52,7 @@ class WcBusinessTest extends TestCase
     public function it_has_a_legal_entity_type()
     {
         $type = $this->faker->word;
-        $business = WcBusiness::factory()->create(['legal_entity_type' => $type]);
+        $business = LeadBusiness::factory()->create(['legal_entity_type' => $type]);
 
         $this->assertEquals($type, $business->legal_entity_type);
     }
