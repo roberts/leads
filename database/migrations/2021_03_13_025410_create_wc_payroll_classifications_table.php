@@ -6,30 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateWcPayrollClassificationsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('wc_payroll_classifications', function (Blueprint $table) {
             $table->id();
-            $table->string('class_code');
-            $table->integer('number_of_employees');
-            $table->decimal('annual_payroll',12,3);
             $table->unsignedBigInteger('wc_lead_id');
+            $table->string('description')->nullable();
+            $table->string('class_code')->nullable();
+            $table->integer('number_of_employees')->nullable();
+            $table->integer('annual_payroll')->nullable(); // Stored in dollar amount
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('wc_payroll_classifications');
     }
 }
