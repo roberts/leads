@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
-class WcLead extends BaseModel
+class Lead extends BaseModel
 {
     use HasPackageFactory;
 
@@ -26,11 +26,11 @@ class WcLead extends BaseModel
     {
         parent::boot();
 
-        static::creating(function (WcLead $lead) {
+        static::creating(function (Lead $lead) {
             $lead->lead_number = $lead->lead_number ?: $lead->generateLeadNumber();
         });
 
-        static::saving(function (WcLead $lead) {
+        static::saving(function (Lead $lead) {
             Assert::lazy()
                 ->that($lead->email)->notEmpty('A lead must have an email address.')
                 ->verifyNow();

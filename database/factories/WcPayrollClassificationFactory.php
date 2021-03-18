@@ -3,7 +3,7 @@
 namespace Roberts\Leads\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Roberts\Leads\Models\WcLead;
+use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\WcPayrollClassification;
 
 class WcPayrollClassificationFactory extends Factory
@@ -26,7 +26,7 @@ class WcPayrollClassificationFactory extends Factory
             'class_code' => $this->faker->uuid,
             'number_of_employees' => $this->faker->randomNumber,
             'annual_payroll' => $this->faker->randomNumber,
-            'wc_lead_id' => WcLead::factory(),
+            'lead_id' => Lead::factory(),
         ];
     }
 }

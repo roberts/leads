@@ -30,7 +30,7 @@ class PresentationTest extends TestCase
             'name' => $attributes['business_name'],
         ]);
 
-        $this->assertDatabaseHas('wc_leads', [
+        $this->assertDatabaseHas('leads', [
             'email' => $attributes['email'],
             'wc_business_id' => 1,
         ]);

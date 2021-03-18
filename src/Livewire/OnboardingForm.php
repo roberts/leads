@@ -4,7 +4,7 @@ namespace Roberts\Leads\Livewire;
 
 use Livewire\Component;
 use Roberts\Leads\Enums\OnboardingFormStep;
-use Roberts\Leads\Models\WcLead;
+use Roberts\Leads\Models\Lead;
 
 class OnboardingForm extends Component
 {
@@ -37,7 +37,7 @@ class OnboardingForm extends Component
         $this->step = $step;
     }
 
-    public function setLead(WcLead $lead)
+    public function setLead(Lead $lead)
     {
         $this->lead = $lead;
     }
