@@ -11,7 +11,8 @@ use Roberts\WorkCompLeads\Tests\TestCase;
 
 class CompClaimsTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /** @test */
     public function a_user_can_add_the_worker_claims_they_have_had()
