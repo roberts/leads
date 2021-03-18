@@ -50,9 +50,4 @@ class Lead extends BaseModel
     {
         return $this->belongsTo(LeadBusiness::class, 'lead_business_id');
     }
-
-    public function payrollClassifications()
-    {
-        return $this->hasMany(WcPayrollClassification::class);
-    }
 }
