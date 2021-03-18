@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Roberts\WorkCompLeads\Tests\Support\Models;
+namespace Roberts\Leads\Tests\Support\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tipoff\Support\Models\TestModelStub;

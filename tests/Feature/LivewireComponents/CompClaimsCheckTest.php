@@ -1,10 +1,10 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Tests\Feature\LivewireComponents;
+namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 
 use Livewire\Livewire;
-use Roberts\WorkCompLeads\Livewire\OnboardingForm\CompClaimsCheck;
-use Roberts\WorkCompLeads\Tests\TestCase;
+use Roberts\Leads\Livewire\OnboardingForm\CompClaimsCheck;
+use Roberts\Leads\Tests\TestCase;
 
 class CompClaimsCheckTest extends TestCase
 {

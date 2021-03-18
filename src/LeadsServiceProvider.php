@@ -1,13 +1,13 @@
 <?php
 
-namespace Roberts\WorkCompLeads;
+namespace Roberts\Leads;
 
 use Livewire\Livewire;
-use Roberts\WorkCompLeads\Livewire\OnboardingForm;
+use Roberts\Leads\Livewire\OnboardingForm;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
 
-class WorkCompLeadsServiceProvider extends TipoffServiceProvider
+class LeadsServiceProvider extends TipoffServiceProvider
 {
     public function boot()
     {
@@ -20,7 +20,7 @@ class WorkCompLeadsServiceProvider extends TipoffServiceProvider
     {
         $tipoffPackage
             ->hasWebRoute('web')
-            ->name('work-comp-leads')
+            ->name('leads')
             ->hasConfigFile()
             ->hasViews()
             ->hasAssets();

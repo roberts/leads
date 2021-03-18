@@ -1,6 +1,6 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Enums;
+namespace Roberts\Leads\Enums;
 
 use BenSampo\Enum\Enum;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Tests\Feature\LivewireComponents;
+namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
-use Roberts\WorkCompLeads\Livewire\OnboardingForm\ContactDetails;
-use Roberts\WorkCompLeads\Models\WcLead;
-use Roberts\WorkCompLeads\Tests\TestCase;
+use Roberts\Leads\Livewire\OnboardingForm\ContactDetails;
+use Roberts\Leads\Models\WcLead;
+use Roberts\Leads\Tests\TestCase;
 
 class ContactDetailsTest extends TestCase
 {

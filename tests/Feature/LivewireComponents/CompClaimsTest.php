@@ -1,13 +1,13 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Tests\Feature\LivewireComponents;
+namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
-use Roberts\WorkCompLeads\Livewire\OnboardingForm\CompClaims;
-use Roberts\WorkCompLeads\Models\WcLead;
-use Roberts\WorkCompLeads\Tests\TestCase;
+use Roberts\Leads\Livewire\OnboardingForm\CompClaims;
+use Roberts\Leads\Models\WcLead;
+use Roberts\Leads\Tests\TestCase;
 
 class CompClaimsTest extends TestCase
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Tests\Feature\LivewireComponents;
+namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
-use Roberts\WorkCompLeads\Livewire\OnboardingForm\Presentation;
-use Roberts\WorkCompLeads\Tests\TestCase;
+use Roberts\Leads\Livewire\OnboardingForm\Presentation;
+use Roberts\Leads\Tests\TestCase;
 
 class PresentationTest extends TestCase
 {

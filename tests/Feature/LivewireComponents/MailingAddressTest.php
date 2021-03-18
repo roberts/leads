@@ -1,11 +1,11 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Tests\Feature\LivewireComponents;
+namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
-use Roberts\WorkCompLeads\Livewire\OnboardingForm\MailingAddress;
-use Roberts\WorkCompLeads\Tests\TestCase;
+use Roberts\Leads\Livewire\OnboardingForm\MailingAddress;
+use Roberts\Leads\Tests\TestCase;
 
 class MailingAddressTest extends TestCase
 {

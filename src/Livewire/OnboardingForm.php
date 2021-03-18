@@ -1,10 +1,10 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Livewire;
+namespace Roberts\Leads\Livewire;
 
 use Livewire\Component;
-use Roberts\WorkCompLeads\Enums\OnboardingFormStep;
-use Roberts\WorkCompLeads\Models\WcLead;
+use Roberts\Leads\Enums\OnboardingFormStep;
+use Roberts\Leads\Models\WcLead;
 
 class OnboardingForm extends Component
 {

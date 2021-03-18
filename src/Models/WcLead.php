@@ -1,6 +1,6 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Models;
+namespace Roberts\Leads\Models;
 
 use Assert\Assert;
 use Carbon\Carbon;

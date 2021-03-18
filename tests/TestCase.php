@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Roberts\WorkCompLeads\Tests;
+namespace Roberts\Leads\Tests;
 
 use Laravel\Nova\NovaCoreServiceProvider;
 use Livewire\LivewireServiceProvider;
-use Roberts\WorkCompLeads\Tests\Support\Providers\NovaTestbenchServiceProvider;
-use Roberts\WorkCompLeads\WorkCompLeadsServiceProvider;
+use Roberts\Leads\Tests\Support\Providers\NovaTestbenchServiceProvider;
+use Roberts\Leads\LeadsServiceProvider;
 use Tipoff\Support\SupportServiceProvider;
 use Tipoff\TestSupport\BaseTestCase;
 
@@ -18,7 +18,7 @@ class TestCase extends BaseTestCase
         return [
             NovaCoreServiceProvider::class,
             NovaTestbenchServiceProvider::class,
-            WorkCompLeadsServiceProvider::class,
+            LeadsServiceProvider::class,
             SupportServiceProvider::class,
             LivewireServiceProvider::class,
         ];

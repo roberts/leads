@@ -1,8 +1,8 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Livewire\OnboardingForm;
+namespace Roberts\Leads\Livewire\OnboardingForm;
 
-use Roberts\WorkCompLeads\Enums\OnboardingFormStep;
+use Roberts\Leads\Enums\OnboardingFormStep;
 
 class CompInsuranceCheck extends OnboardingFormStepComponent
 {

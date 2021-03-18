@@ -1,10 +1,10 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Database\Factories;
+namespace Roberts\Leads\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Roberts\WorkCompLeads\Models\WcBusiness;
-use Roberts\WorkCompLeads\Models\WcLead;
+use Roberts\Leads\Models\WcBusiness;
+use Roberts\Leads\Models\WcLead;
 
 class WcLeadFactory extends Factory
 {

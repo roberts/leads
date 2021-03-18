@@ -1,6 +1,6 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Http\Controllers;
+namespace Roberts\Leads\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 

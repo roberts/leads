@@ -1,8 +1,8 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Database\Factories;
+namespace Roberts\Leads\Database\Factories;
 
-use Roberts\WorkCompLeads\Models\WcBusiness;
+use Roberts\Leads\Models\WcBusiness;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class WcBusinessFactory extends Factory

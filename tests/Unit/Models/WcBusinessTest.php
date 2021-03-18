@@ -1,11 +1,11 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Tests\Unit\Models;
+namespace Roberts\Leads\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Roberts\WorkCompLeads\Models\WcBusiness;
-use Roberts\WorkCompLeads\Tests\TestCase;
+use Roberts\Leads\Models\WcBusiness;
+use Roberts\Leads\Tests\TestCase;
 
 class WcBusinessTest extends TestCase
 {

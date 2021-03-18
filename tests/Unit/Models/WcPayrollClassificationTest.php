@@ -1,12 +1,12 @@
 <?php
 
-namespace Roberts\WorkCompLeads\Tests\Unit\Models;
+namespace Roberts\Leads\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Roberts\WorkCompLeads\Models\WcLead;
-use Roberts\WorkCompLeads\Models\WcPayrollClassification;
-use Roberts\WorkCompLeads\Tests\TestCase;
+use Roberts\Leads\Models\WcLead;
+use Roberts\Leads\Models\WcPayrollClassification;
+use Roberts\Leads\Tests\TestCase;
 
 class WcPayrollClassificationTest extends TestCase
 {

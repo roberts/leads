@@ -1,8 +1,8 @@
-# Laravel package for Workers Compensation Insurance
+# Laravel package for Multi-Step Lead Generation
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/roberts/work-comp-leads.svg?style=flat-square)](https://packagist.org/packages/roberts/work-comp-leads)
-![Tests](https://github.com/roberts/work-comp-leads/workflows/Tests/badge.svg)
-[![Total Downloads](https://img.shields.io/packagist/dt/roberts/work-comp-leads.svg?style=flat-square)](https://packagist.org/packages/roberts/work-comp-leads)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/roberts/leads.svg?style=flat-square)](https://packagist.org/packages/roberts/leads)
+![Tests](https://github.com/roberts/leads/workflows/Tests/badge.svg)
+[![Total Downloads](https://img.shields.io/packagist/dt/roberts/leads.svg?style=flat-square)](https://packagist.org/packages/roberts/leads)
 
 This is where your description should go.
 
@@ -11,13 +11,13 @@ This is where your description should go.
 You can install the package via composer:
 
 ```bash
-composer require roberts/work-comp-leads
+composer require roberts/leads
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --provider="Roberts\WorkCompLeads\WorkCompLeadsServiceProvider" --tag="work-comp-leads-config"
+php artisan vendor:publish --provider="Roberts\Leads\LeadsServiceProvider" --tag="leads-config"
 ```
 
 This is the contents of the published config file:

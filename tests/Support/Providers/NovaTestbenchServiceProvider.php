@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Roberts\WorkCompLeads\Tests\Support\Providers;
+namespace Roberts\Leads\Tests\Support\Providers;
 
 use Tipoff\TestSupport\Providers\BaseNovaPackageServiceProvider;
 

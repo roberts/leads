@@ -1,11 +1,11 @@
 {
-    "name": "roberts/work-comp-leads",
+    "name": "roberts/leads",
     "description": "Laravel package for Workers Compensation Insurance",
     "keywords": [
         "roberts",
-        "work-comp-leads"
+        "leads"
     ],
-    "homepage": "https://github.com/roberts/work-comp-leads",
+    "homepage": "https://github.com/roberts/leads",
     "license": "MIT",
     "authors": [
         {
@@ -26,13 +26,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Roberts\\WorkCompLeads\\": "src",
-            "Roberts\\WorkCompLeads\\Database\\Factories\\": "database/factories"
+            "Roberts\\Leads\\": "src",
+            "Roberts\\Leads\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Roberts\\WorkCompLeads\\Tests\\": "tests"
+            "Roberts\\Leads\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -46,7 +46,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Roberts\\WorkCompLeads\\WorkCompLeadsServiceProvider"
+                "Roberts\\Leads\\LeadsServiceProvider"
             ]
         }
     },
