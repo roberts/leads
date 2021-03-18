@@ -4,6 +4,7 @@ namespace Roberts\WorkCompLeads\Livewire;
 
 use Livewire\Component;
 use Roberts\WorkCompLeads\Enums\OnboardingFormStep;
+use Roberts\WorkCompLeads\Models\WcLead;
 
 class OnboardingForm extends Component
 {
@@ -21,7 +22,7 @@ class OnboardingForm extends Component
 
     public function render()
     {
-        return view('wc::livewire.onboarding-form');
+        return view('livewire.onboarding-form');
     }
 
     public function mount()
