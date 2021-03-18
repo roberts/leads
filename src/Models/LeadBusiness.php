@@ -8,6 +8,4 @@ use Tipoff\Support\Traits\HasPackageFactory;
 class LeadBusiness extends BaseModel
 {
     use HasPackageFactory;
-
-
 }
