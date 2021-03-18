@@ -28,16 +28,16 @@ class WorkCompLeadsServiceProvider extends TipoffServiceProvider
 
     protected function registerLivewireComponents()
     {
-        Livewire::component('wc::onboarding-form', OnboardingForm::class);
-        Livewire::component('wc::presentation', OnboardingForm\Presentation::class);
-        Livewire::component('wc::contact-details', OnboardingForm\ContactDetails::class);
-        Livewire::component('wc::mailing-address', OnboardingForm\MailingAddress::class);
-        Livewire::component('wc::business-details', OnboardingForm\BusinessDetails::class);
-        Livewire::component('wc::payroll-classifications', OnboardingForm\PayrollClassifications::class);
-        Livewire::component('wc::comp-insurance-check', OnboardingForm\CompInsuranceCheck::class);
-        Livewire::component('wc::comp-insurance', OnboardingForm\CompInsurance::class);
-        Livewire::component('wc::comp-claims-check', OnboardingForm\CompClaimsCheck::class);
-        Livewire::component('wc::comp-claims', OnboardingForm\CompClaims::class);
-        Livewire::component('wc::completed', OnboardingForm\Completed::class);
+        Livewire::component('onboarding-form', OnboardingForm::class);
+        Livewire::component('presentation', OnboardingForm\Presentation::class);
+        Livewire::component('contact-details', OnboardingForm\ContactDetails::class);
+        Livewire::component('mailing-address', OnboardingForm\MailingAddress::class);
+        Livewire::component('business-details', OnboardingForm\BusinessDetails::class);
+        Livewire::component('payroll-classifications', OnboardingForm\PayrollClassifications::class);
+        Livewire::component('comp-insurance-check', OnboardingForm\CompInsuranceCheck::class);
+        Livewire::component('comp-insurance', OnboardingForm\CompInsurance::class);
+        Livewire::component('comp-claims-check', OnboardingForm\CompClaimsCheck::class);
+        Livewire::component('comp-claims', OnboardingForm\CompClaims::class);
+        Livewire::component('completed', OnboardingForm\Completed::class);
     }
 }
