@@ -21,7 +21,7 @@
 
         <div class="onboarding-form__block-group">
             <input
-                type="text"
+                type="number"
                 wire:model="attributes.number_of_employees"
                 class="onboarding-form__text-input @if(!empty($attributes['number_of_employees'])) onboarding-form__text-input--filled @endif"
             />
@@ -35,7 +35,7 @@
 
         <div class="onboarding-form__block-group">
             <input
-                type="text"
+                type="number"
                 wire:model="attributes.annual_payroll"
                 class="onboarding-form__text-input @if(!empty($attributes['annual_payroll'])) onboarding-form__text-input--filled @endif"
             />

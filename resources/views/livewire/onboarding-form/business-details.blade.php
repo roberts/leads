@@ -50,7 +50,7 @@
 
             <div class="onboarding-form__block-group">
                 <input
-                    type="text"
+                    type="number"
                     wire:model="attributes.year_of_establishment"
                     class="onboarding-form__text-input @if(!empty($attributes['year_of_establishment'])) onboarding-form__text-input--filled @endif"
                 />
