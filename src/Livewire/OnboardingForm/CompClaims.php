@@ -14,7 +14,7 @@ class CompClaims extends OnboardingFormStepComponent
 
     public function render()
     {
-        return view('sl::livewire.onboarding-form.comp-claims');
+        return view('livewire.onboarding-form.comp-claims');
     }
 
     public function processLead(array $data)
