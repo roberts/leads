@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.onboarding-form {
+    @apply text-center container mx-auto px-4 py-8 text-gray-800;
+    max-width: 500px;
+}
+
+.onboarding-form__heading {
+    @apply text-4xl mb-16 font-serif;
+}
+
+.onboarding-form__block-group {
+    @apply relative mb-8;
+}
+
+.onboarding-form__button {
+    @apply p-4 uppercase font-bold rounded-md mt-8;
+    min-width: 12rem;
+    transition: all .2s,transform .5s;
+
+    &:focus {
+        @apply outline-none;
+    }
+}
+
+.onboarding-form__next-button {
+    @extend .onboarding-form__button;
+    @apply text-white;
+
+    &:enabled {
+        @apply bg-primary;
+        transform: translateY(0rem);
+        box-shadow: 0 10px 40px -10px rgba(255, 0, 131, .5);
+    }
+
+    &:disabled {
+        @apply bg-gray-200;
+        transform: translateY(1rem);
+    }
+
+    &:hover:enabled,
+    &:focus:enabled {
+        background: #DC0073;
+    }
+}
+
+.onboarding-form__label {
+    @apply uppercase font-bold;
+}
+
+.onboarding-form__text-input + .onboarding-form__label {
+    @apply absolute left-0 top-0 p-4 text-gray-400 text-sm;
+    z-index: -1;
+    transition: all .2s;
+}
+
+.onboarding-form__text-input {
+    @apply rounded-md bg-transparent px-4 border border-gray-200 w-full py-3;
+    min-width: 20rem;
+
+    &:focus {
+        @apply outline-none ring-2 ring-primary border-transparent;
+    }
+
+    &:focus,
+    &--filled {
+        @apply pt-5 pb-1;
+    }
+
+    &:focus + .onboarding-form__label,
+    &--filled + .onboarding-form__label {
+        @apply text-tiny pt-1;
+    }
+}
+
+.onboarding-form__error {
+    @apply text-danger text-xs text-left absolute left-0;
+    top: calc(100% + 6px);
+}
+
+.onboarding-form__radio {
+    input[type='radio'] {
+        @apply hidden;
+
+        &:checked + .onboarding-form__label .onboarding-form__radio-button {
+            @apply bg-primary;
+            box-shadow: 0px 0px 0px 4px white inset;
+        }
+    }
+
+    .onboarding-form__label {
+        @apply bg-gray-100 p-4 rounded-md block text-left mb-4 flex items-center cursor-pointer;
+
+        .onboarding-form__radio-button {
+            @apply w-6 h-6 inline-block mr-2 border-2 border-gray-200 rounded-full bg-white;
+            transition: background .2s, transform .2s;
+        }
+    }
+}
