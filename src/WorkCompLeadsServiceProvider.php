@@ -21,6 +21,7 @@ class WorkCompLeadsServiceProvider extends TipoffServiceProvider
         $tipoffPackage
             ->name('work-comp-leads')
             ->hasConfigFile()
+            ->hasWebRoute('web')
             ->hasViews()
             ->hasAssets();
     }
