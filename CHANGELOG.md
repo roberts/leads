@@ -6,3 +6,7 @@ All notable changes to `leads` will be documented in this file.
 
 - initial release
 - draft migrations
+
+## 1.1.0 - 2021-03-18
+
+- remove payrolls table
