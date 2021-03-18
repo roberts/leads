@@ -19,10 +19,12 @@
         "bensampo/laravel-enum": "^3.3",
         "livewire/livewire": "^2.4",
         "tipoff/authorization": "^2.5.5",
-        "tipoff/support": "^1.6.3"
+        "tipoff/locations": "^2.6.0",
+        "tipoff/statuses": "^2.0.5",
+        "tipoff/support": "^1.7.2"
     },
     "require-dev": {
-        "tipoff/test-support": "^1.2.0"
+        "tipoff/test-support": "^1.3.0"
     },
     "autoload": {
         "psr-4": {
