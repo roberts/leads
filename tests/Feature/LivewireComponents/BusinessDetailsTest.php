@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Roberts\Leads\Livewire\OnboardingForm\BusinessDetails;
 use Roberts\Leads\Models\WcBusiness;
-use Roberts\Leads\Models\WcLead;
+use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Tests\TestCase;
 
 class BusinessDetailsTest extends TestCase
@@ -17,7 +17,7 @@ class BusinessDetailsTest extends TestCase
     public function a_user_can_add_business_details()
     {
         $business = WcBusiness::factory()->create();
-        $lead = WcLead::factory()->create(['wc_business_id' => $business->id]);
+        $lead = Lead::factory()->create(['wc_business_id' => $business->id]);
 
         $attributes = WcBusiness::factory()
             ->withNullableFields()

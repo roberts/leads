@@ -4,7 +4,7 @@ namespace Roberts\Leads\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Roberts\Leads\Models\WcLead;
+use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\WcPayrollClassification;
 use Roberts\Leads\Tests\TestCase;
 
@@ -45,6 +45,6 @@ class WcPayrollClassificationTest extends TestCase
     {
         $classification = WcPayrollClassification::factory()->create();
 
-        $this->assertInstanceOf(WcLead::class, $classification->lead);
+        $this->assertInstanceOf(Lead::class, $classification->lead);
     }
 }

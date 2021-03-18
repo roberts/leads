@@ -10,7 +10,7 @@ class CreateWcPayrollClassificationsTable extends Migration
     {
         Schema::create('wc_payroll_classifications', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('wc_lead_id');
+            $table->unsignedBigInteger('lead_id');
             $table->string('description')->nullable();
             $table->string('class_code')->nullable();
             $table->integer('number_of_employees')->nullable();

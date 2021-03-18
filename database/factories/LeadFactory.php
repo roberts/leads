@@ -4,16 +4,16 @@ namespace Roberts\Leads\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Roberts\Leads\Models\WcBusiness;
-use Roberts\Leads\Models\WcLead;
+use Roberts\Leads\Models\Lead;
 
-class WcLeadFactory extends Factory
+class LeadFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = WcLead::class;
+    protected $model = Lead::class;
 
     /**
      * Define the model's default state.

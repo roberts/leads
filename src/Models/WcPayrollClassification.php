@@ -13,6 +13,6 @@ class WcPayrollClassification extends BaseModel
 
     public function lead()
     {
-        return $this->belongsTo(WcLead::class, 'wc_lead_id');
+        return $this->belongsTo(Lead::class, 'lead_id');
     }
 }

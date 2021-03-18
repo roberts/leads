@@ -5,7 +5,7 @@ namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Roberts\Leads\Livewire\OnboardingForm\CompInsurance;
-use Roberts\Leads\Models\WcLead;
+use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Tests\TestCase;
 
 class CompInsuranceTest extends TestCase
@@ -15,9 +15,9 @@ class CompInsuranceTest extends TestCase
     /** @test */
     public function a_user_can_add_the_current_insurance_plan_details()
     {
-        $lead = WcLead::factory()->create();
+        $lead = Lead::factory()->create();
 
-        $attributes = WcLead::factory()
+        $attributes = Lead::factory()
             ->withNullableFields()
             ->raw();
 

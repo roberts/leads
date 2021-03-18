@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Roberts\Leads\Livewire\OnboardingForm\CompClaims;
-use Roberts\Leads\Models\WcLead;
+use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Tests\TestCase;
 
 class CompClaimsTest extends TestCase
@@ -17,7 +17,7 @@ class CompClaimsTest extends TestCase
     /** @test */
     public function a_user_can_add_the_worker_claims_they_have_had()
     {
-        $lead = WcLead::factory()->create();
+        $lead = Lead::factory()->create();
         $pastCompClaims = $this->faker->paragraph;
 
         Livewire::test(CompClaims::class)

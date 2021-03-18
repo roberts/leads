@@ -5,7 +5,7 @@ namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Roberts\Leads\Livewire\OnboardingForm\PayrollClassifications;
-use Roberts\Leads\Models\WcLead;
+use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\WcPayrollClassification;
 use Roberts\Leads\Tests\TestCase;
 
@@ -16,8 +16,8 @@ class PayrollClassificationsTest extends TestCase
     /** @test */
     public function a_user_can_add_a_payroll_classification()
     {
-        $lead = WcLead::factory()->create();
-        $attributes = WcPayrollClassification::factory()->raw(['wc_lead_id' => $lead]);
+        $lead = Lead::factory()->create();
+        $attributes = WcPayrollClassification::factory()->raw(['lead_id' => $lead]);
 
         Livewire::test(PayrollClassifications::class)
             ->set('lead', $lead)
