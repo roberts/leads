@@ -10,7 +10,8 @@ use Roberts\WorkCompLeads\Tests\TestCase;
 
 class PresentationTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /** @test */
     public function a_user_can_create_a_lead()
