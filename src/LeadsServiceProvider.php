@@ -33,7 +33,6 @@ class LeadsServiceProvider extends TipoffServiceProvider
         Livewire::component('contact-details', OnboardingForm\ContactDetails::class);
         Livewire::component('mailing-address', OnboardingForm\MailingAddress::class);
         Livewire::component('business-details', OnboardingForm\BusinessDetails::class);
-        Livewire::component('payroll-classifications', OnboardingForm\PayrollClassifications::class);
         Livewire::component('comp-insurance-check', OnboardingForm\CompInsuranceCheck::class);
         Livewire::component('comp-insurance', OnboardingForm\CompInsurance::class);
         Livewire::component('comp-claims-check', OnboardingForm\CompClaimsCheck::class);
