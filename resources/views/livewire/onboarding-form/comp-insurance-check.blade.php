@@ -8,9 +8,9 @@
             <div class="onboarding-form__radio">
                 <input
                     type="radio"
-                    wire:model="attributes.has_comp_insurance"
+                    wire:model="attributes.should_add_insurance_details"
                     value="1"
-                    name="has_comp_insurance"
+                    name="should_add_insurance_details"
                     id="yes"
                 />
 
@@ -22,9 +22,9 @@
             <div class="onboarding-form__radio">
                 <input
                     type="radio"
-                    wire:model="attributes.has_comp_insurance"
+                    wire:model="attributes.should_add_insurance_details"
                     value="0"
-                    name="has_comp_insurance"
+                    name="should_add_insurance_details"
                     id="no"
                 />
 
@@ -33,8 +33,8 @@
                 </label>
             </div>
 
-            @error('attributes.has_comp_insurance')
-            <p class="onboarding-form__error">{{ $message }}</p>
+            @error('attributes.should_add_insurance_details')
+                <p class="onboarding-form__error">{{ $message }}</p>
             @enderror
         </div>
 
