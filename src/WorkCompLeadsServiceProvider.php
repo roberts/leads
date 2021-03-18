@@ -13,16 +13,15 @@ class WorkCompLeadsServiceProvider extends TipoffServiceProvider
     {
         parent::boot();
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'wc');
-
         $this->registerLivewireComponents();
     }
 
-    public function configureTipoffPackage(TipoffPackage $package): void
+    public function configureTipoffPackage(TipoffPackage $tipoffPackage): void
     {
-        $package
+        $tipoffPackage
             ->name('work-comp-leads')
             ->hasConfigFile()
+            ->hasViews()
             ->hasAssets();
     }
 
