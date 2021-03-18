@@ -29,6 +29,6 @@ class BusinessDetails extends OnboardingFormStepComponent
 
     public function getNextStep()
     {
-        return OnboardingFormStep::PAYROLL_CLASSIFICATIONS;
+        return OnboardingFormStep::COMP_INSURANCE_CHECK;
     }
 }
