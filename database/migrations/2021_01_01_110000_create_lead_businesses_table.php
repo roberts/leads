@@ -13,6 +13,7 @@ class CreateLeadBusinessesTable extends Migration
             $table->string('name');
             $table->string('nature')->nullable();
             $table->string('fein')->nullable();
+            $table->string('payroll')->nullable();
             $table->integer('year_of_establishment')->nullable();
             $table->string('legal_entity_type')->nullable();
             $table->timestamps();
