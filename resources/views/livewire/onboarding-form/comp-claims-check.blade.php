@@ -8,9 +8,9 @@
             <div class="onboarding-form__radio">
                 <input
                     type="radio"
-                    wire:model="attributes.had_claims"
+                    wire:model="attributes.should_add_claims"
                     value="1"
-                    name="had_claims"
+                    name="should_add_claims"
                     id="yes"
                 />
 
@@ -22,9 +22,9 @@
             <div class="onboarding-form__radio">
                 <input
                     type="radio"
-                    wire:model="attributes.had_claims"
+                    wire:model="attributes.should_add_claims"
                     value="0"
-                    name="had_claims"
+                    name="should_add_claims"
                     id="no"
                 />
 
@@ -33,7 +33,7 @@
                 </label>
             </div>
 
-            @error('attributes.had_claims')
+            @error('attributes.should_add_claims')
                 <p class="onboarding-form__error">{{ $message }}</p>
             @enderror
         </div>
