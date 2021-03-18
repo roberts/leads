@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Carbon;
 use Roberts\Leads\Models\Lead;
-use Roberts\Leads\Models\WcBusiness;
+use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Models\WcPayrollClassification;
 use Roberts\Leads\Tests\TestCase;
 
@@ -91,7 +91,7 @@ class LeadTest extends TestCase
     {
         $lead = Lead::factory()->create();
 
-        $this->assertInstanceOf(WcBusiness::class, $lead->business);
+        $this->assertInstanceOf(LeadBusiness::class, $lead->business);
     }
 
     /** @test */

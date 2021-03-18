@@ -4,7 +4,7 @@ namespace Roberts\Leads\Livewire\OnboardingForm;
 
 use Roberts\Leads\Enums\OnboardingFormStep;
 use Roberts\Leads\Models\Lead;
-use Roberts\Leads\Models\WcBusiness;
+use Roberts\Leads\Models\LeadBusiness;
 
 class Presentation extends OnboardingFormStepComponent
 {
@@ -22,11 +22,11 @@ class Presentation extends OnboardingFormStepComponent
 
     public function processLead(array $data)
     {
-        $business = WcBusiness::create($data['business']);
+        $business = LeadBusiness::create($data['business']);
 
         return Lead::create([
             'email' => $data['email'],
-            'wc_business_id' => $business->id,
+            'lead_business_id' => $business->id,
         ]);
     }
 

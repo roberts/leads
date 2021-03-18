@@ -4,11 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWcBusinessesTable extends Migration
+class CreateLeadBusinessesTable extends Migration
 {
     public function up()
     {
-        Schema::create('wc_businesses', function (Blueprint $table) {
+        Schema::create('lead_businesses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('nature')->nullable();

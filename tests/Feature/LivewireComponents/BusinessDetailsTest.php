@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Roberts\Leads\Livewire\OnboardingForm\BusinessDetails;
 use Roberts\Leads\Models\Lead;
-use Roberts\Leads\Models\WcBusiness;
+use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Tests\TestCase;
 
 class BusinessDetailsTest extends TestCase
@@ -16,10 +16,10 @@ class BusinessDetailsTest extends TestCase
     /** @test */
     public function a_user_can_add_business_details()
     {
-        $business = WcBusiness::factory()->create();
-        $lead = Lead::factory()->create(['wc_business_id' => $business->id]);
+        $business = LeadBusiness::factory()->create();
+        $lead = Lead::factory()->create(['lead_business_id' => $business->id]);
 
-        $attributes = WcBusiness::factory()
+        $attributes = LeadBusiness::factory()
             ->withNullableFields()
             ->raw(['name' => $business->name]);
 
@@ -31,7 +31,7 @@ class BusinessDetailsTest extends TestCase
             ->set('attributes.year_of_establishment', $attributes['year_of_establishment'])
             ->call('submit');
 
-        $this->assertDatabaseHas('wc_businesses', $attributes);
+        $this->assertDatabaseHas('lead_businesses', $attributes);
     }
 
     /** @test */
