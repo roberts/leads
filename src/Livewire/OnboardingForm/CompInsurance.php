@@ -15,7 +15,7 @@ class CompInsurance extends OnboardingFormStepComponent
 
     public function render()
     {
-        return view('sl::livewire.onboarding-form.comp-insurance');
+        return view('livewire.onboarding-form.comp-insurance');
     }
 
     public function processLead(array $data)

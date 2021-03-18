@@ -13,6 +13,7 @@ class WcLead extends BaseModel
 
     protected $casts = [
         'current_plan_expires_at' => 'date',
+        'current_plan_under_cancellation' => 'boolean',
     ];
 
     public function business()
