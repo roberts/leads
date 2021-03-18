@@ -2,6 +2,10 @@
 
 namespace Roberts\WorkCompLeads\Models;
 
+use Assert\Assert;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasPackageFactory;
 
