@@ -2,6 +2,7 @@
 
 namespace Roberts\Leads;
 
+use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Roberts\Leads\Livewire\OnboardingForm;
 use Tipoff\Support\TipoffPackage;
@@ -19,11 +20,12 @@ class LeadsServiceProvider extends TipoffServiceProvider
     public function configureTipoffPackage(TipoffPackage $tipoffPackage): void
     {
         $tipoffPackage
-            ->hasWebRoute('web')
             ->name('leads')
             ->hasConfigFile()
             ->hasViews()
             ->hasAssets();
+
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
 
     protected function registerLivewireComponents()
