@@ -5,7 +5,7 @@ namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Roberts\Leads\Livewire\OnboardingForm\CompInsurance;
-use Roberts\Leads\Models\Lead;
+use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Tests\TestCase;
 
 class CompInsuranceTest extends TestCase
@@ -15,22 +15,22 @@ class CompInsuranceTest extends TestCase
     /** @test */
     public function a_user_can_add_the_current_insurance_plan_details()
     {
-        $lead = Lead::factory()->create();
+        $business = LeadBusiness::factory()->create();
 
-        $attributes = Lead::factory()
+        $attributes = LeadBusiness::factory()
             ->withNullableFields()
             ->raw();
 
         Livewire::test(CompInsurance::class)
-            ->set('lead', $lead)
+            ->set('lead', $business->lead)
             ->set('attributes.current_plan_under_cancellation', $attributes['current_plan_under_cancellation'])
             ->set('attributes.current_plan_expires_at', $attributes['current_plan_expires_at'])
             ->call('submit');
 
-        $lead->refresh();
+        $business->refresh();
 
-        $this->assertEquals($attributes['current_plan_under_cancellation'], $lead->current_plan_under_cancellation);
-        $this->assertNotNull($lead->current_plan_expires_at);
+        $this->assertEquals($attributes['current_plan_under_cancellation'], $business->current_plan_under_cancellation);
+        $this->assertNotNull($business->current_plan_expires_at);
     }
 
     /** @test */

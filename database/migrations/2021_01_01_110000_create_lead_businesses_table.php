@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Roberts\Leads\Models\Lead;
 
 class CreateLeadBusinessesTable extends Migration
 {
@@ -16,6 +17,10 @@ class CreateLeadBusinessesTable extends Migration
             $table->string('payroll')->nullable();
             $table->integer('year_of_establishment')->nullable();
             $table->string('legal_entity_type')->nullable();
+            $table->boolean('current_plan_under_cancellation')->nullable();
+            $table->date('current_plan_expires_at')->nullable();
+            $table->text('past_comp_claims')->nullable();
+            $table->foreignIdFor(Lead::class); // moving to other table to reverse the relationship
             $table->timestamps();
         });
     }

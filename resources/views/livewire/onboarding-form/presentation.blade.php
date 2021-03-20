@@ -22,11 +22,11 @@
         <div class="onboarding-form__block-group">
             <input
                 type="text"
-                wire:model="attributes.business.name"
-                class="onboarding-form__text-input @if(!empty($attributes['business.name'])) onboarding-form__text-input--filled @endif"
+                wire:model="attributes.business_name"
+                class="onboarding-form__text-input @if(!empty($attributes['business_name'])) onboarding-form__text-input--filled @endif"
             />
 
-            @error('attributes.business.name')
+            @error('attributes.business_name')
                 <p class="onboarding-form__error">{{ $message }}</p>
             @enderror
 

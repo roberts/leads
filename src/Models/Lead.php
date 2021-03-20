@@ -24,10 +24,8 @@ class Lead extends BaseModel
     protected $casts = [
         'form_completed_at' => 'datetime',
         'verified_at' => 'datetime',
-        'current_plan_expires_at' => 'date',
-        'current_plan_under_cancellation' => 'boolean',
     ];
-    
+
     protected static function boot()
     {
         parent::boot();
@@ -42,7 +40,7 @@ class Lead extends BaseModel
                 ->verifyNow();
         });
     }
-    
+
     protected function generateLeadNumber(): string
     {
         do {
@@ -54,6 +52,6 @@ class Lead extends BaseModel
 
     public function business()
     {
-        return $this->belongsTo(LeadBusiness::class, 'lead_business_id');
+        return $this->hasOne(LeadBusiness::class);
     }
 }
