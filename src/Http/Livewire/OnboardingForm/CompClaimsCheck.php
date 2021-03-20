@@ -3,7 +3,6 @@
 namespace Roberts\Leads\Http\Livewire\OnboardingForm;
 
 use Roberts\Leads\Enums\OnboardingFormStep;
-use Roberts\Leads\Http\Livewire\OnboardingForm\OnboardingFormStepComponent;
 
 class CompClaimsCheck extends OnboardingFormStepComponent
 {
