@@ -23,7 +23,10 @@ class BusinessDetailsTest extends TestCase
             ->withNullableFields()
             ->raw([
                 'name' => $business->name,
-                'lead_id' => $business->lead_id,
+                'lead_id' => $lead->id,
+                'current_plan_under_cancellation' => null,
+                'current_plan_expires_at' => null,
+                'past_comp_claims' => null,
             ]);
 
         Livewire::test(BusinessDetails::class)

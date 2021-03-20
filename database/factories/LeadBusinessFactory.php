@@ -26,6 +26,9 @@ class LeadBusinessFactory extends Factory
                 'fein' => $this->faker->uuid,
                 'year_of_establishment' => $this->faker->numberBetween(1900, 2010),
                 'legal_entity_type' => $this->faker->word,
+                'current_plan_under_cancellation' => $this->faker->boolean,
+                'current_plan_expires_at' => $this->faker->date,
+                'past_comp_claims' => $this->faker->paragraph,
             ];
         });
     }

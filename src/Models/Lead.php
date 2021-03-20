@@ -24,8 +24,6 @@ class Lead extends BaseModel
     protected $casts = [
         'form_completed_at' => 'datetime',
         'verified_at' => 'datetime',
-        'current_plan_expires_at' => 'date',
-        'current_plan_under_cancellation' => 'boolean',
     ];
 
     protected static function boot()

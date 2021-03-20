@@ -22,11 +22,6 @@ class CreateLeadsTable extends Migration
             $table->dateTime('form_completed_at')->nullable();
             $table->dateTime('verified_at')->nullable();
 
-                // Move these 3 fields to LeadBusiness table
-                $table->boolean('current_plan_under_cancellation')->nullable();
-                $table->date('current_plan_expires_at')->nullable();
-                $table->text('past_comp_claims')->nullable();
-
             $table->foreignIdFor(app('user'))->nullable(); // Can be added later if the email from the lead matches a user in the system
             $table->foreignIdFor(app('user'), 'creator_id')->nullable(); // Will seldom be used, but is needed in case a lead is added by a staff member on behalf of a lead that called in.
             $table->foreignIdFor(app('user'), 'updater_id')->nullable(); // Most fields will be locked for updates in Nova, but we may allow some to be updated by staff.

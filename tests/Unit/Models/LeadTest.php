@@ -60,22 +60,6 @@ class LeadTest extends TestCase
     }
 
     /** @test */
-    public function it_has_the_expiration_date_for_the_current_comp_plan()
-    {
-        $lead = Lead::factory()->create(['current_plan_expires_at' => $this->faker->date]);
-
-        $this->assertInstanceOf(Carbon::class, $lead->current_plan_expires_at);
-    }
-
-    /** @test */
-    public function it_has_the_date_the_form_was_completed_at()
-    {
-        $lead = Lead::factory()->create(['form_completed_at' => $this->faker->date]);
-
-        $this->assertInstanceOf(Carbon::class, $lead->form_completed_at);
-    }
-
-    /** @test */
     public function it_has_the_date_the_lead_was_verified_at()
     {
         $lead = Lead::factory()->create(['verified_at' => $this->faker->date]);
@@ -84,21 +68,11 @@ class LeadTest extends TestCase
     }
 
     /** @test */
-    public function it_has_the_details_of_the_past_comp_claims()
+    public function it_has_the_date_the_form_was_completed_at()
     {
-        $pastCompClaims = $this->faker->paragraph;
-        $lead = Lead::factory()->create(['past_comp_claims' => $pastCompClaims]);
+        $lead = Lead::factory()->create(['form_completed_at' => $this->faker->date]);
 
-        $this->assertEquals($pastCompClaims, $lead->past_comp_claims);
-    }
-
-    /** @test */
-    public function it_has_an_under_cancellation_flag_for_the_current_plan()
-    {
-        $underCancellation = $this->faker->boolean;
-        $lead = Lead::factory()->create(['current_plan_under_cancellation' => $underCancellation]);
-
-        $this->assertEquals($underCancellation, $lead->current_plan_under_cancellation);
+        $this->assertInstanceOf(Carbon::class, $lead->form_completed_at);
     }
 
     /** @test */
