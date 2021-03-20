@@ -68,6 +68,22 @@ class LeadTest extends TestCase
     }
 
     /** @test */
+    public function it_has_the_date_the_form_was_completed_at()
+    {
+        $lead = Lead::factory()->create(['form_completed_at' => $this->faker->date]);
+
+        $this->assertInstanceOf(Carbon::class, $lead->form_completed_at);
+    }
+
+    /** @test */
+    public function it_has_the_date_the_lead_was_verified_at()
+    {
+        $lead = Lead::factory()->create(['verified_at' => $this->faker->date]);
+
+        $this->assertInstanceOf(Carbon::class, $lead->verified_at);
+    }
+
+    /** @test */
     public function it_has_the_details_of_the_past_comp_claims()
     {
         $pastCompClaims = $this->faker->paragraph;
