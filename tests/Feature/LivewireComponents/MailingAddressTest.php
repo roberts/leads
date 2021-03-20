@@ -4,7 +4,7 @@ namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
-use Roberts\Leads\Livewire\OnboardingForm\MailingAddress;
+use Roberts\Leads\Http\Livewire\OnboardingForm\MailingAddress;
 use Roberts\Leads\Tests\TestCase;
 
 class MailingAddressTest extends TestCase

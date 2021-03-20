@@ -3,7 +3,7 @@
 namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 
 use Livewire\Livewire;
-use Roberts\Leads\Livewire\OnboardingForm\CompClaimsCheck;
+use Roberts\Leads\Http\Livewire\OnboardingForm\CompClaimsCheck;
 use Roberts\Leads\Tests\TestCase;
 
 class CompClaimsCheckTest extends TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace Roberts\Leads\Livewire;
+namespace Roberts\Leads\Http\Livewire;
 
 use Livewire\Component;
 use Roberts\Leads\Enums\OnboardingFormStep;

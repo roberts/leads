@@ -5,7 +5,7 @@ namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
-use Roberts\Leads\Livewire\OnboardingForm\Presentation;
+use Roberts\Leads\Http\Livewire\OnboardingForm\Presentation;
 use Roberts\Leads\Tests\TestCase;
 
 class PresentationTest extends TestCase
