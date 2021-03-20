@@ -4,6 +4,7 @@ namespace Roberts\Leads\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Tests\TestCase;
 
@@ -55,5 +56,13 @@ class LeadBusinessTest extends TestCase
         $business = LeadBusiness::factory()->create(['legal_entity_type' => $type]);
 
         $this->assertEquals($type, $business->legal_entity_type);
+    }
+
+    /** @test */
+    public function it_belongs_to_a_lead()
+    {
+        $business = LeadBusiness::factory()->create();
+
+        $this->assertInstanceOf(Lead::class, $business->lead);
     }
 }

@@ -22,14 +22,16 @@ class Presentation extends OnboardingFormStepComponent
 
     public function processLead(array $data)
     {
-        $business = LeadBusiness::create([
-            'name' => $data['business_name'],
+        $lead = Lead::create([
+            'email' => $data['email'],
         ]);
 
-        return Lead::create([
-            'email' => $data['email'],
-            'lead_business_id' => $business->id,
+        LeadBusiness::create([
+            'name' => $data['business_name'],
+            'lead_id' => $lead->id,
         ]);
+
+        return $lead;
     }
 
     public function getNextStep()

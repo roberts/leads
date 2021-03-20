@@ -14,7 +14,6 @@ class LeadFactory extends Factory
     {
         return [
             'email' => $this->faker->email,
-            'lead_business_id' => LeadBusiness::factory(),
         ];
     }
 
@@ -29,7 +28,6 @@ class LeadFactory extends Factory
                 'current_plan_under_cancellation' => $this->faker->boolean,
                 'current_plan_expires_at' => $this->faker->date,
                 'past_comp_claims' => $this->faker->paragraph,
-                'lead_business_id' => LeadBusiness::factory(),
             ];
         });
     }

@@ -105,6 +105,7 @@ class LeadTest extends TestCase
     public function it_is_associated_with_a_business()
     {
         $lead = Lead::factory()->create();
+        LeadBusiness::factory()->create(['lead_id' => $lead->id]);
 
         $this->assertInstanceOf(LeadBusiness::class, $lead->business);
     }

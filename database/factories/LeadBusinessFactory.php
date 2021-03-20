@@ -2,6 +2,7 @@
 
 namespace Roberts\Leads\Database\Factories;
 
+use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\LeadBusiness;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -13,6 +14,7 @@ class LeadBusinessFactory extends Factory
     {
         return [
             'name' => $this->faker->company,
+            'lead_id' => Lead::factory(),
         ];
     }
 

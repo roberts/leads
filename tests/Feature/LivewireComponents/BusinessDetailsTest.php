@@ -16,12 +16,15 @@ class BusinessDetailsTest extends TestCase
     /** @test */
     public function a_user_can_add_business_details()
     {
-        $business = LeadBusiness::factory()->create();
-        $lead = Lead::factory()->create(['lead_business_id' => $business->id]);
+        $lead = Lead::factory()->create();
+        $business = LeadBusiness::factory()->create(['lead_id' => $lead->id]);
 
         $attributes = LeadBusiness::factory()
             ->withNullableFields()
-            ->raw(['name' => $business->name]);
+            ->raw([
+                'name' => $business->name,
+                'lead_id' => $business->lead_id,
+            ]);
 
         Livewire::test(BusinessDetails::class)
             ->set('lead', $lead)
