@@ -10,7 +10,7 @@ class Presentation extends OnboardingFormStepComponent
 {
     protected $rules = [
         'attributes.email' => 'required|email',
-        'attributes.business.name' => 'required',
+        'attributes.business_name' => 'required',
     ];
 
     protected $validationAttributes = [];
@@ -22,12 +22,16 @@ class Presentation extends OnboardingFormStepComponent
 
     public function processLead(array $data)
     {
-        $business = LeadBusiness::create($data['business']);
-
-        return Lead::create([
+        $lead = Lead::create([
             'email' => $data['email'],
-            'lead_business_id' => $business->id,
         ]);
+
+        LeadBusiness::create([
+            'name' => $data['business_name'],
+            'lead_id' => $lead->id,
+        ]);
+
+        return $lead;
     }
 
     public function getNextStep()

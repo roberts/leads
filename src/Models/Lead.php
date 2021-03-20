@@ -6,11 +6,15 @@ use Assert\Assert;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Tipoff\Support\Models\BaseModel;
+use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
+use Tipoff\Support\Traits\HasUpdater;
 
 class Lead extends BaseModel
 {
+    use HasCreator;
     use HasPackageFactory;
+    use HasUpdater;
 
     protected $guarded = [
         'id',
@@ -18,10 +22,10 @@ class Lead extends BaseModel
     ];
 
     protected $casts = [
-        'current_plan_expires_at' => 'date',
-        'current_plan_under_cancellation' => 'boolean',
+        'form_completed_at' => 'datetime',
+        'verified_at' => 'datetime',
     ];
-    
+
     protected static function boot()
     {
         parent::boot();
@@ -36,7 +40,7 @@ class Lead extends BaseModel
                 ->verifyNow();
         });
     }
-    
+
     protected function generateLeadNumber(): string
     {
         do {
@@ -48,6 +52,6 @@ class Lead extends BaseModel
 
     public function business()
     {
-        return $this->belongsTo(LeadBusiness::class, 'lead_business_id');
+        return $this->hasOne(LeadBusiness::class);
     }
 }

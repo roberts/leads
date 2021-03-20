@@ -19,7 +19,7 @@ class CompClaims extends OnboardingFormStepComponent
 
     public function processLead(array $data)
     {
-        $this->lead->update($data);
+        $this->lead->business->update($data);
 
         return $this->lead;
     }

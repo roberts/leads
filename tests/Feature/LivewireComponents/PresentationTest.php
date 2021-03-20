@@ -23,16 +23,16 @@ class PresentationTest extends TestCase
 
         Livewire::test(Presentation::class)
             ->set('attributes.email', $attributes['email'])
-            ->set('attributes.business.name', $attributes['business_name'])
+            ->set('attributes.business_name', $attributes['business_name'])
             ->call('submit');
 
         $this->assertDatabaseHas('lead_businesses', [
             'name' => $attributes['business_name'],
+            'lead_id' => 1,
         ]);
 
         $this->assertDatabaseHas('leads', [
             'email' => $attributes['email'],
-            'lead_business_id' => 1,
         ]);
     }
 
@@ -48,7 +48,7 @@ class PresentationTest extends TestCase
     public function business_name_is_required()
     {
         Livewire::test(Presentation::class)
-            ->set('attributes.business.name', '')
-            ->assertHasErrors(['attributes.business.name' => 'required']);
+            ->set('attributes.business_name', '')
+            ->assertHasErrors(['attributes.business_name' => 'required']);
     }
 }
