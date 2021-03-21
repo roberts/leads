@@ -5,9 +5,11 @@ namespace Roberts\Leads\Tests\Unit\Models;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Carbon;
+use Roberts\Leads\Enums\LeadStatus;
 use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Tests\TestCase;
+use Tipoff\Statuses\Models\StatusRecord;
 
 class LeadTest extends TestCase
 {
@@ -82,5 +84,41 @@ class LeadTest extends TestCase
         LeadBusiness::factory()->create(['lead_id' => $lead->id]);
 
         $this->assertInstanceOf(LeadBusiness::class, $lead->business);
+    }
+
+    /** @test */
+    public function it_has_statuses()
+    {
+        $lead = Lead::factory()->create();
+
+        $lead->setLeadStatus(LeadStatus::PARTIAL);
+
+        $history = $lead->getLeadStatusHistory()
+            ->map(function (StatusRecord $statusRecord) {
+                return (string) $statusRecord->status;
+            })->toArray();
+
+        $this->assertEquals(
+            [LeadStatus::PARTIAL, LeadStatus::OPEN],
+            $history
+        );
+    }
+
+    /** @test */
+    public function it_sets_a_new_status()
+    {
+        $lead = Lead::factory()->create();
+
+        $lead->setLeadStatus(LeadStatus::PARTIAL);
+
+        $this->assertEquals(LeadStatus::PARTIAL, $lead->getLeadStatus());
+    }
+
+    /** @test */
+    public function it_is_associated_with_an_open_status_as_it_is_created()
+    {
+        $lead = Lead::factory()->create();
+
+        $this->assertEquals(LeadStatus::OPEN, $lead->getLeadStatus());
     }
 }
