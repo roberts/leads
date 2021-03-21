@@ -6,7 +6,6 @@ use Assert\Assert;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Roberts\Leads\Enums\LeadStatus;
-use Tipoff\Statuses\Models\Status;
 use Tipoff\Statuses\Traits\HasStatuses;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
@@ -15,10 +14,10 @@ use Tipoff\Support\Traits\HasUpdater;
 
 class Lead extends BaseModel
 {
-    use HasCreator,
-        HasPackageFactory,
-        HasUpdater,
-        HasStatuses;
+    use HasCreator;
+    use HasPackageFactory;
+    use HasUpdater;
+    use HasStatuses;
 
     protected $guarded = [
         'id',
