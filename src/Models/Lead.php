@@ -5,6 +5,8 @@ namespace Roberts\Leads\Models;
 use Assert\Assert;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Roberts\Leads\Enums\LeadStatus;
+use Tipoff\Statuses\Traits\HasStatuses;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
@@ -15,6 +17,7 @@ class Lead extends BaseModel
     use HasCreator;
     use HasPackageFactory;
     use HasUpdater;
+    use HasStatuses;
 
     protected $guarded = [
         'id',
@@ -26,12 +29,18 @@ class Lead extends BaseModel
         'verified_at' => 'datetime',
     ];
 
+    const STATUS_TYPE = 'lead';
+
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function (Lead $lead) {
             $lead->lead_number = $lead->lead_number ?: $lead->generateLeadNumber();
+        });
+
+        static::created(function (Lead $lead) {
+            $lead->setLeadStatus(LeadStatus::OPEN);
         });
 
         static::saving(function (Lead $lead) {
@@ -48,6 +57,21 @@ class Lead extends BaseModel
         } while (static::query()->where('lead_number', $token)->count()); //check if the token already exists and if it does, try again
 
         return $token;
+    }
+
+    public function setLeadStatus(string $status)
+    {
+        return $this->setStatus($status, static::STATUS_TYPE);
+    }
+
+    public function getLeadStatus()
+    {
+        return $this->getStatus(static::STATUS_TYPE);
+    }
+
+    public function getLeadStatusHistory()
+    {
+        return $this->getStatusHistory(static::STATUS_TYPE);
     }
 
     public function business()
