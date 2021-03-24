@@ -22,7 +22,7 @@ class OnboardingForm extends Component
 
     public function render()
     {
-        return view('livewire.onboarding-form');
+        return view('leads::livewire.onboarding-form');
     }
 
     public function mount()

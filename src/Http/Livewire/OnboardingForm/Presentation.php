@@ -17,7 +17,7 @@ class Presentation extends OnboardingFormStepComponent
 
     public function render()
     {
-        return view('livewire.onboarding-form.presentation');
+        return view('leads::livewire.onboarding-form.presentation');
     }
 
     public function processLead(array $data)
