@@ -4,7 +4,7 @@ namespace Roberts\Leads\Tests\Feature\LivewireComponents;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
-use Roberts\Leads\Livewire\OnboardingForm\BusinessDetails;
+use Roberts\Leads\Http\Livewire\OnboardingForm\BusinessDetails;
 use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Tests\TestCase;

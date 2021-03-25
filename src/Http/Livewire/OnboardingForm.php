@@ -1,6 +1,6 @@
 <?php
 
-namespace Roberts\Leads\Livewire;
+namespace Roberts\Leads\Http\Livewire;
 
 use Livewire\Component;
 use Roberts\Leads\Enums\OnboardingFormStep;
@@ -22,7 +22,7 @@ class OnboardingForm extends Component
 
     public function render()
     {
-        return view('livewire.onboarding-form');
+        return view('leads::livewire.onboarding-form');
     }
 
     public function mount()

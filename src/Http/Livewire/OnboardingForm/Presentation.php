@@ -1,6 +1,6 @@
 <?php
 
-namespace Roberts\Leads\Livewire\OnboardingForm;
+namespace Roberts\Leads\Http\Livewire\OnboardingForm;
 
 use Roberts\Leads\Enums\OnboardingFormStep;
 use Roberts\Leads\Models\Lead;
@@ -17,7 +17,7 @@ class Presentation extends OnboardingFormStepComponent
 
     public function render()
     {
-        return view('livewire.onboarding-form.presentation');
+        return view('leads::livewire.onboarding-form.presentation');
     }
 
     public function processLead(array $data)

@@ -25,8 +25,8 @@ class TestCase extends BaseTestCase
             StatusesServiceProvider::class,
             AuthorizationServiceProvider::class,
             PermissionServiceProvider::class,
-            LivewireServiceProvider::class,
             LeadsServiceProvider::class,
+            LivewireServiceProvider::class,
         ];
     }
 }
