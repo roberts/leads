@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use Roberts\Leads\Enums\LeadStatus;
 use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\LeadBusiness;
+use Roberts\Leads\Models\LeadType;
 use Roberts\Leads\Tests\TestCase;
 use Tipoff\Statuses\Models\StatusRecord;
 
@@ -84,6 +85,14 @@ class LeadTest extends TestCase
         LeadBusiness::factory()->create(['lead_id' => $lead->id]);
 
         $this->assertInstanceOf(LeadBusiness::class, $lead->business);
+    }
+
+    /** @test */
+    public function it_has_a_type()
+    {
+        $lead = Lead::factory()->create();
+
+        $this->assertInstanceOf(LeadType::class, $lead->type);
     }
 
     /** @test */

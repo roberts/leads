@@ -59,6 +59,11 @@ class Lead extends BaseModel
         return $token;
     }
 
+    public function type()
+    {
+        return $this->belongsTo(LeadType::class, 'lead_type_id');
+    }
+
     public function setLeadStatus(string $status)
     {
         return $this->setStatus($status, static::STATUS_TYPE);
