@@ -32,6 +32,15 @@ class LeadStepTest extends TestCase
     }
 
     /** @test */
+    public function it_has_an_number()
+    {
+        $number = $this->faker->randomNumber;
+        $leadStep = LeadStep::factory()->create(['number' => $number]);
+
+        $this->assertEquals($number, $leadStep->number);
+    }
+
+    /** @test */
     public function it_belongs_to_a_lead_type()
     {
         $leadStep = LeadStep::factory()->create();
