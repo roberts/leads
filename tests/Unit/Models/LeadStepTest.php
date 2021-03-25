@@ -30,7 +30,7 @@ class LeadStepTest extends TestCase
 
         $this->assertEquals($slug, $leadStep->slug);
     }
-    
+
     /** @test */
     public function it_belongs_to_a_lead_type()
     {

@@ -23,6 +23,15 @@ class LeadTypeTest extends TestCase
     }
 
     /** @test */
+    public function it_has_a_slug()
+    {
+        $slug = $this->faker->slug;
+        $leadType = LeadType::factory()->create(['slug' => $slug]);
+
+        $this->assertEquals($slug, $leadType->slug);
+    }
+
+    /** @test */
     public function it_has_one_or_more_steps()
     {
         $leadType = LeadType::factory()->create();
