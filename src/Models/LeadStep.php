@@ -7,7 +7,7 @@ use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
 use Tipoff\Support\Traits\HasUpdater;
 
-class LeadType extends BaseModel
+class LeadStep extends BaseModel
 {
     use HasCreator,
         HasUpdater,
@@ -17,8 +17,8 @@ class LeadType extends BaseModel
         'id',
     ];
 
-    public function steps()
+    public function leadType()
     {
-        return $this->hasMany(LeadStep::class);
+        return $this->belongsTo(LeadType::class);
     }
 }
