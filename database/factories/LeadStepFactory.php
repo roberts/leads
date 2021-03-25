@@ -13,6 +13,7 @@ class LeadStepFactory extends Factory
     public function definition()
     {
         return [
+            'title' => $this->faker->sentence,
             'lead_type_id' => LeadType::factory(),
         ];
     }

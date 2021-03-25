@@ -2,6 +2,7 @@
 
 namespace Roberts\Leads\Models;
 
+use Illuminate\Support\Str;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
@@ -16,6 +17,17 @@ class LeadStep extends BaseModel
     protected $guarded = [
         'id',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($step) {
+            if (empty($step->slug)) {
+                $step->slug = Str::slug($step->title);
+            }
+        });
+    }
 
     public function leadType()
     {

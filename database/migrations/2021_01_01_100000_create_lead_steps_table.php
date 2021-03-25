@@ -11,8 +11,12 @@ class CreateLeadStepsTable extends Migration
     {
         Schema::create('lead_steps', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug');
             $table->foreignIdFor(LeadType::class);
             $table->timestamps();
+
+            $table->unique(['slug', 'lead_type_id']);
         });
     }
 }
