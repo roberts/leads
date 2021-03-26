@@ -24,7 +24,7 @@ class LeadType extends BaseModel
 
         static::saving(function ($type) {
             if (empty($type->slug)) {
-                $type->slug = Str::slug($type->title);
+                $type->slug = Str::slug($type->name);
             }
         });
     }
