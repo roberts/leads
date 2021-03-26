@@ -56,6 +56,24 @@ class LeadTypeTest extends TestCase
     }
 
     /** @test */
+    public function it_has_an_initial_step()
+    {
+        $leadType = LeadType::factory()->create();
+        $leadStep = LeadStep::factory()->create([
+            'lead_type_id' => $leadType->id,
+            'number' => 1,
+        ]);
+
+        LeadStep::factory()->create([
+            'lead_type_id' => $leadType->id,
+            'number' => 2,
+        ]);
+
+        $this->assertInstanceOf(LeadStep::class, $leadType->initialStep);
+        $this->assertEquals($leadStep->id, $leadType->initialStep->id);
+    }
+
+    /** @test */
     public function it_uses_the_slug_value_for_route_model_binding()
     {
         $leadType = LeadType::factory()->create();
