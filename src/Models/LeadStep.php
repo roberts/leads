@@ -29,6 +29,11 @@ class LeadStep extends BaseModel
         });
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function leadType()
     {
         return $this->belongsTo(LeadType::class);

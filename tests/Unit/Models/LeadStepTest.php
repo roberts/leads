@@ -47,4 +47,12 @@ class LeadStepTest extends TestCase
 
         $this->assertInstanceOf(LeadType::class, $leadStep->leadType);
     }
+
+    /** @test */
+    public function it_uses_the_slug_value_for_route_model_binding()
+    {
+        $leadStep = LeadStep::factory()->create();
+
+        $this->assertEquals('slug', $leadStep->getRouteKeyName());
+    }
 }
