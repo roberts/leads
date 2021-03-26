@@ -4,6 +4,7 @@ namespace Roberts\Leads\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Str;
 use Roberts\Leads\Models\LeadStep;
 use Roberts\Leads\Models\LeadType;
 use Roberts\Leads\Tests\TestCase;
@@ -29,6 +30,18 @@ class LeadTypeTest extends TestCase
         $leadType = LeadType::factory()->create(['slug' => $slug]);
 
         $this->assertEquals($slug, $leadType->slug);
+    }
+
+    /** @test */
+    public function it_generates_a_slug_based_on_the_name_if_empty()
+    {
+        $name = $this->faker->word;
+        $leadType = LeadType::factory()->create(['name' => $name]);
+
+        $this->assertEquals(
+            Str::slug($leadType->name),
+            $leadType->slug
+        );
     }
 
     /** @test */
