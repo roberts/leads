@@ -68,4 +68,19 @@ class LeadStepTest extends TestCase
 
         $this->assertEquals('slug', $leadStep->getRouteKeyName());
     }
+
+    /** @test */
+    public function it_determines_the_next_step_by_incrementing_its_number()
+    {
+        $leadStep = LeadStep::factory()->create();
+        $expectedNextStep = LeadStep::factory()->create([
+            'number' => $leadStep->number + 1,
+            'lead_type_id' => $leadStep->lead_type_id,
+        ]);
+
+        $nextStep = $leadStep->next();
+
+        $this->assertInstanceOf(LeadStep::class, $nextStep);
+        $this->assertEquals($expectedNextStep->id, $nextStep->id);
+    }
 }

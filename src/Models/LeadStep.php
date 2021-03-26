@@ -38,4 +38,9 @@ class LeadStep extends BaseModel
     {
         return $this->belongsTo(LeadType::class);
     }
+
+    public function next()
+    {
+        return $this->leadType->steps()->where('number', $this->number + 1)->first();
+    }
 }
