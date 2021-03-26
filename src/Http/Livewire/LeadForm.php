@@ -30,4 +30,19 @@ class LeadForm extends Component
     {
         return $this->leadType->steps()->where('slug', $this->step)->first();
     }
+
+    public function getHasMoreStepsProperty()
+    {
+        return ! empty($this->activeStep->next());
+    }
+
+    public function submit()
+    {
+        $this->proceed();
+    }
+
+    protected function proceed()
+    {
+        //
+    }
 }

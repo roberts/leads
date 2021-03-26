@@ -50,4 +50,34 @@ class LeadFormTest extends TestCase
         $this->get("{$leadType->getRouteKey()}?step={$anyStep->slug}")
             ->assertSee($anyStep->title);
     }
+
+    /** @test */
+    public function it_can_tell_if_it_does_not_have_more_steps_ahead()
+    {
+        $leadType = LeadType::factory()->create();
+        $anyStep = LeadStep::factory()->create([
+            'lead_type_id' => $leadType->id,
+        ]);
+
+        $this->get("{$leadType->getRouteKey()}?step={$anyStep->slug}")
+            ->assertSee($anyStep->title)
+            ->assertDontSee('Next');
+    }
+
+    /** @test */
+    public function it_can_tell_if_it_has_more_steps_ahead()
+    {
+        $leadType = LeadType::factory()->create();
+        $anyStep = LeadStep::factory()->create([
+            'lead_type_id' => $leadType->id,
+        ]);
+        LeadStep::factory()->create([
+            'lead_type_id' => $leadType->id,
+            'number' => $anyStep->number + 1,
+        ]);
+
+        $this->get("{$leadType->getRouteKey()}?step={$anyStep->slug}")
+            ->assertSee($anyStep->title)
+            ->assertSee('Next');
+    }
 }
