@@ -3,6 +3,7 @@
 namespace Roberts\Leads;
 
 use Livewire\Livewire;
+use Roberts\Leads\Http\Livewire\LeadForm;
 use Roberts\Leads\Http\Livewire\OnboardingForm;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
@@ -30,6 +31,7 @@ class LeadsServiceProvider extends TipoffServiceProvider
 
     protected function registerLivewireComponents()
     {
+        Livewire::component('lead-form', LeadForm::class);
         Livewire::component('onboarding-form', OnboardingForm::class);
         Livewire::component('onboarding-form.presentation', OnboardingForm\Presentation::class);
         Livewire::component('onboarding-form.presentation', OnboardingForm\Presentation::class);
