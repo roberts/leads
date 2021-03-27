@@ -10,9 +10,9 @@ use Tipoff\Support\Traits\HasUpdater;
 
 class LeadStep extends BaseModel
 {
-    use HasCreator,
-        HasUpdater,
-        HasPackageFactory;
+    use HasCreator;
+    use HasUpdater;
+    use HasPackageFactory;
 
     protected $guarded = [
         'id',
