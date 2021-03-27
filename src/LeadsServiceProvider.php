@@ -4,7 +4,6 @@ namespace Roberts\Leads;
 
 use Livewire\Livewire;
 use Roberts\Leads\Http\Livewire\LeadForm;
-use Roberts\Leads\Http\Livewire\OnboardingForm;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
 
