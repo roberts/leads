@@ -32,17 +32,5 @@ class LeadsServiceProvider extends TipoffServiceProvider
     protected function registerLivewireComponents()
     {
         Livewire::component('lead-form', LeadForm::class);
-        Livewire::component('onboarding-form', OnboardingForm::class);
-        Livewire::component('onboarding-form.presentation', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.presentation', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.contact-details', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.mailing-address', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.business-details', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.payroll-classifications', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.comp-insurance-check', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.comp-insurance', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.comp-claims-check', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.comp-claims', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.completed', OnboardingForm\Presentation::class);
     }
 }
