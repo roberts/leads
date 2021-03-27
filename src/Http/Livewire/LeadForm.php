@@ -43,6 +43,10 @@ class LeadForm extends Component
 
     protected function proceed()
     {
-        //
+        if ($this->hasMoreSteps) {
+            $step = $this->activeStep->next();
+            $this->step = $step->slug;
+            $this->activeStep = $step;
+        }
     }
 }

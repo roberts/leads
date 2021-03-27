@@ -99,4 +99,24 @@ class LeadFormTest extends TestCase
             ->assertSet('hasMoreSteps', true)
             ->assertSee('Next');
     }
+
+    /** @test */
+    public function it_proceeds_to_the_next_step_when_the_form_is_submitted()
+    {
+        $leadType = LeadType::factory()->create();
+        $step = LeadStep::factory()->create([
+            'lead_type_id' => $leadType->id,
+        ]);
+        $nextStep = LeadStep::factory()->create([
+            'lead_type_id' => $leadType->id,
+            'number' => $step->number + 1,
+        ]);
+
+        Livewire::withQueryParams(['step' => $step->slug])
+            ->test(LeadForm::class, ['leadType' => $leadType])
+            ->assertSet('step', $step->slug)
+            ->call('submit')
+            ->assertSet('step', $nextStep->slug)
+            ->assertSee($nextStep->title);
+    }
 }
