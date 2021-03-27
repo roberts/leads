@@ -5,6 +5,7 @@ namespace Roberts\Leads\Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Roberts\Leads\Http\Livewire\LeadForm;
+use Roberts\Leads\Models\LeadField;
 use Roberts\Leads\Models\LeadStep;
 use Roberts\Leads\Models\LeadType;
 use Roberts\Leads\Tests\TestCase;
@@ -66,6 +67,45 @@ class LeadFormTest extends TestCase
             ->test(LeadForm::class, ['leadType' => $leadType])
             ->assertSet('step', $step->slug)
             ->assertSee($step->title);
+    }
+
+    /** @test */
+    public function it_shows_all_fields_attached_to_the_active_step()
+    {
+        $leadType = LeadType::factory()->create();
+        $step = LeadStep::factory()->create([
+            'lead_type_id' => $leadType->id,
+        ]);
+
+        $fields = LeadField::factory()->count(3)->create([
+            'lead_step_id' => $step->id,
+        ]);
+
+        $livewire = Livewire::withQueryParams(['step' => $step->slug])
+            ->test(LeadForm::class, ['leadType' => $leadType]);
+
+        $fields->each(function ($field) use ($livewire) {
+            $livewire->assertSee($field->label)
+                ->assertSeeHtml('type="' . $field->type . '"');
+        });
+    }
+
+    /** @test */
+    public function it_does_not_show_fields_from_other_steps()
+    {
+        $leadType = LeadType::factory()->create();
+        $step = LeadStep::factory()->create([
+            'lead_type_id' => $leadType->id,
+        ]);
+
+        $fields = LeadField::factory()->create();
+
+        $livewire = Livewire::withQueryParams(['step' => $step->slug])
+            ->test(LeadForm::class, ['leadType' => $leadType]);
+
+        $fields->each(function ($field) use ($livewire) {
+            $livewire->assertDontSee($field->label);
+        });
     }
 
     /** @test */

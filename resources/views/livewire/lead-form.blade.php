@@ -4,7 +4,11 @@
     </h3>
 
     <form wire:submit.prevent="submit">
-        @if ($this->hasMoreSteps)
+        @foreach($this->activeStep->fields as $field)
+            @include('inputs.' . $field->type)
+        @endforeach
+
+        @if($this->hasMoreSteps)
             <button
                 type="submit"
                 class="onboarding-form__next-button"
