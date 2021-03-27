@@ -3,6 +3,8 @@
 namespace Roberts\Leads\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
+use Roberts\Leads\Http\Livewire\LeadForm;
 use Roberts\Leads\Models\LeadStep;
 use Roberts\Leads\Models\LeadType;
 use Roberts\Leads\Tests\TestCase;
@@ -12,7 +14,7 @@ class LeadFormTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_shows_the_lead_form()
+    public function it_shows_the_lead_form_component()
     {
         $leadType = LeadType::factory()->create();
         LeadStep::factory()->create([
@@ -22,6 +24,19 @@ class LeadFormTest extends TestCase
 
         $this->get($leadType->getRouteKey())
             ->assertOk()
+            ->assertSeeLivewire('lead-form');
+    }
+
+    /** @test */
+    public function it_shows_the_lead_type_name()
+    {
+        $leadType = LeadType::factory()->create();
+        LeadStep::factory()->create([
+            'lead_type_id' => $leadType->id,
+            'number' => 1,
+        ]);
+
+        Livewire::test(LeadForm::class, ['leadType' => $leadType])
             ->assertSee($leadType->name);
     }
 
@@ -34,7 +49,8 @@ class LeadFormTest extends TestCase
             'number' => 1,
         ]);
 
-        $this->get($leadType->getRouteKey())
+        Livewire::test(LeadForm::class, ['leadType' => $leadType])
+            ->assertSet('step', $initialStep->slug)
             ->assertSee($initialStep->title);
     }
 
@@ -42,25 +58,27 @@ class LeadFormTest extends TestCase
     public function it_renders_the_step_defined_by_the_query_string()
     {
         $leadType = LeadType::factory()->create();
-        $anyStep = LeadStep::factory()->create([
+        $step = LeadStep::factory()->create([
             'lead_type_id' => $leadType->id,
-            'number' => 2,
         ]);
 
-        $this->get("{$leadType->getRouteKey()}?step={$anyStep->slug}")
-            ->assertSee($anyStep->title);
+        Livewire::withQueryParams(['step' => $step->slug])
+            ->test(LeadForm::class, ['leadType' => $leadType])
+            ->assertSet('step', $step->slug)
+            ->assertSee($step->title);
     }
 
     /** @test */
     public function it_can_tell_if_it_does_not_have_more_steps_ahead()
     {
         $leadType = LeadType::factory()->create();
-        $anyStep = LeadStep::factory()->create([
+        $step = LeadStep::factory()->create([
             'lead_type_id' => $leadType->id,
         ]);
 
-        $this->get("{$leadType->getRouteKey()}?step={$anyStep->slug}")
-            ->assertSee($anyStep->title)
+        Livewire::withQueryParams(['step' => $step->slug])
+            ->test(LeadForm::class, ['leadType' => $leadType])
+            ->assertSet('hasMoreSteps', false)
             ->assertDontSee('Next');
     }
 
@@ -68,16 +86,17 @@ class LeadFormTest extends TestCase
     public function it_can_tell_if_it_has_more_steps_ahead()
     {
         $leadType = LeadType::factory()->create();
-        $anyStep = LeadStep::factory()->create([
+        $step = LeadStep::factory()->create([
             'lead_type_id' => $leadType->id,
         ]);
         LeadStep::factory()->create([
             'lead_type_id' => $leadType->id,
-            'number' => $anyStep->number + 1,
+            'number' => $step->number + 1,
         ]);
 
-        $this->get("{$leadType->getRouteKey()}?step={$anyStep->slug}")
-            ->assertSee($anyStep->title)
+        Livewire::withQueryParams(['step' => $step->slug])
+            ->test(LeadForm::class, ['leadType' => $leadType])
+            ->assertSet('hasMoreSteps', true)
             ->assertSee('Next');
     }
 }
