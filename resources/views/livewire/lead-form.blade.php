@@ -5,7 +5,10 @@
 
     <form wire:submit.prevent="submit">
         @if ($this->hasMoreSteps)
-            <button type="submit">
+            <button
+                type="submit"
+                class="onboarding-form__next-button"
+            >
                 Next
             </button>
         @endif
