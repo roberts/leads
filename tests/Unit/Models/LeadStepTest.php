@@ -5,6 +5,7 @@ namespace Roberts\Leads\Tests\Unit\Models;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
+use Roberts\Leads\Models\LeadField;
 use Roberts\Leads\Models\LeadStep;
 use Roberts\Leads\Models\LeadType;
 use Roberts\Leads\Tests\TestCase;
@@ -59,6 +60,17 @@ class LeadStepTest extends TestCase
         $leadStep = LeadStep::factory()->create();
 
         $this->assertInstanceOf(LeadType::class, $leadStep->leadType);
+    }
+
+    /** @test */
+    public function it_has_fields()
+    {
+        $leadStep = LeadStep::factory()->create();
+        $field = LeadField::factory()->create(['lead_step_id' => $leadStep->id]);
+
+        $this->assertCount(1, $leadStep->fields);
+        $this->assertInstanceOf(LeadField::class, $leadStep->fields->first());
+        $this->assertEquals($field->id, $leadStep->fields->first()->id);
     }
 
     /** @test */

@@ -4,15 +4,11 @@ namespace Roberts\Leads\Models;
 
 use Illuminate\Support\Str;
 use Tipoff\Support\Models\BaseModel;
-use Tipoff\Support\Traits\HasCreator;
 use Tipoff\Support\Traits\HasPackageFactory;
-use Tipoff\Support\Traits\HasUpdater;
 
 class LeadStep extends BaseModel
 {
-    use HasCreator,
-        HasUpdater,
-        HasPackageFactory;
+    use HasPackageFactory;
 
     protected $guarded = [
         'id',
@@ -37,6 +33,11 @@ class LeadStep extends BaseModel
     public function leadType()
     {
         return $this->belongsTo(LeadType::class);
+    }
+
+    public function fields()
+    {
+        return $this->hasMany(LeadField::class);
     }
 
     public function next()
