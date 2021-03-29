@@ -9,8 +9,12 @@
     max-width: 500px;
 }
 
-.onboarding-form__heading {
+.onboarding-form__step-heading {
     @apply text-4xl mb-16 font-serif;
+}
+
+.onboarding-form__lead-heading {
+    @apply font-bold text-primary uppercase text-sm mb-6;
 }
 
 .onboarding-form__block-group {

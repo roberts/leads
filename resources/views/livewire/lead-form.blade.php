@@ -1,6 +1,8 @@
 <div class="onboarding-form">
-    <h3 class="onboarding-form__heading">
-        {{ $leadType->name }} - {{ $this->activeStep->title }}
+    <div class="onboarding-form__lead-heading">{{ $leadType->name }}</div>
+
+    <h3 class="onboarding-form__step-heading">
+        {{ $this->activeStep->title }}
     </h3>
 
     <form wire:submit.prevent="submit">
