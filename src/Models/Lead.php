@@ -2,7 +2,6 @@
 
 namespace Roberts\Leads\Models;
 
-use Assert\Assert;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Roberts\Leads\Enums\LeadStatus;
@@ -42,12 +41,6 @@ class Lead extends BaseModel
         static::created(function (Lead $lead) {
             $lead->setLeadStatus(LeadStatus::OPEN);
         });
-
-        static::saving(function (Lead $lead) {
-            Assert::lazy()
-                ->that($lead->email)->notEmpty('A lead must have an email address.')
-                ->verifyNow();
-        });
     }
 
     protected function generateLeadNumber(): string
@@ -82,5 +75,15 @@ class Lead extends BaseModel
     public function business()
     {
         return $this->hasOne(LeadBusiness::class);
+    }
+
+    public function getCustomAttributesAttribute($value)
+    {
+        return ! empty($value) ? collect(json_decode($value, true)) : [];
+    }
+
+    public function setCustomAttributesAttribute($value)
+    {
+        $this->attributes['custom_attributes'] = json_encode($value);
     }
 }

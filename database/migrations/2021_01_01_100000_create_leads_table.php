@@ -16,8 +16,8 @@ class CreateLeadsTable extends Migration
             $table->string('email');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('position')->nullable();
             $table->string('phone_number')->nullable(); // Will be replaced later with relationship to Phone model in tipoff/addresses
+            $table->json('custom_attributes');
 
             // Timestamps of when various processes completed. Will also have statuses added
             $table->dateTime('form_completed_at')->nullable();

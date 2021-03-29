@@ -45,21 +45,22 @@ class LeadTest extends TestCase
     }
 
     /** @test */
-    public function it_has_the_position_of_the_lead_creator()
-    {
-        $position = $this->faker->word;
-        $lead = Lead::factory()->create(['position' => $position]);
-
-        $this->assertEquals($position, $lead->position);
-    }
-
-    /** @test */
     public function it_has_the_phone_number_of_the_lead_creator()
     {
         $phoneNumber = $this->faker->phoneNumber;
         $lead = Lead::factory()->create(['phone_number' => $phoneNumber]);
 
         $this->assertEquals($phoneNumber, $lead->phone_number);
+    }
+
+    /** @test */
+    public function it_has_a_list_of_custom_attributes()
+    {
+        $customAttributes = collect(['username' => $this->faker->userName]);
+
+        $lead = Lead::factory()->create(['custom_attributes' => $customAttributes]);
+
+        $this->assertEquals($customAttributes, $lead->custom_attributes);
     }
 
     /** @test */
