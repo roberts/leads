@@ -98,7 +98,7 @@ class Lead extends BaseModel
 
     public function customAttributeExists($attribute)
     {
-        return !empty($this->type)
+        return ! empty($this->type)
             && in_array($attribute, $this->type->fields->pluck('name')->toArray(), true);
     }
 }

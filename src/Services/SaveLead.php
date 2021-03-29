@@ -13,7 +13,7 @@ class SaveLead
 
     public function __construct(Lead $lead = null)
     {
-        $this->lead = !is_null($lead) ? $lead : new Lead;
+        $this->lead = ! is_null($lead) ? $lead : new Lead;
     }
 
     public function withLeadType(LeadType $leadType)

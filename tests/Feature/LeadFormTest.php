@@ -13,7 +13,8 @@ use Roberts\Leads\Tests\TestCase;
 
 class LeadFormTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /** @test */
     public function it_shows_the_lead_form_component()

@@ -14,7 +14,8 @@ use Roberts\Leads\Tests\TestCase;
 
 class SaveLeadTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /** @test */
     public function it_sets_the_lead_type()
@@ -65,25 +66,21 @@ class SaveLeadTest extends TestCase
     /** @test */
     public function it_creates_a_phone()
     {
-
     }
 
     /** @test */
     public function it_updates_a_phone()
     {
-
     }
 
     /** @test */
     public function it_creates_a_business()
     {
-
     }
 
     /** @test */
     public function it_updates_a_business()
     {
-
     }
 
     /** @test */
