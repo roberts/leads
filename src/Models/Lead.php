@@ -17,9 +17,16 @@ class Lead extends BaseModel
     use HasUpdater;
     use HasStatuses;
 
-    protected $guarded = [
-        'id',
-        'lead_number',
+    protected $fillable = [
+        'email',
+        'first_name',
+        'last_name',
+        'custom_attributes',
+        'lead_type_id',
+        'phone_id',
+        'user_id',
+        'creator_id',
+        'updater_id',
     ];
 
     protected $casts = [
@@ -82,5 +89,16 @@ class Lead extends BaseModel
     public function setCustomAttributesAttribute($value)
     {
         $this->attributes['custom_attributes'] = json_encode($value);
+    }
+
+    public function attributeExists($attribute)
+    {
+        return in_array($attribute, $this->getFillable(), true);
+    }
+
+    public function customAttributeExists($attribute)
+    {
+        return !empty($this->type)
+            && in_array($attribute, $this->type->fields->pluck('name')->toArray(), true);
     }
 }
