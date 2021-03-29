@@ -57,6 +57,11 @@ class Lead extends BaseModel
         return $this->belongsTo(LeadType::class, 'lead_type_id');
     }
 
+    public function phone()
+    {
+        return $this->belongsTo(app('phone'));
+    }
+
     public function setLeadStatus(string $status)
     {
         return $this->setStatus($status, static::STATUS_TYPE);

@@ -9,6 +9,7 @@ use Roberts\Leads\Enums\LeadStatus;
 use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Models\LeadType;
+use Roberts\Leads\Tests\Support\Models\Phone;
 use Roberts\Leads\Tests\TestCase;
 use Tipoff\Statuses\Models\StatusRecord;
 
@@ -45,15 +46,6 @@ class LeadTest extends TestCase
     }
 
     /** @test */
-    public function it_has_the_phone_number_of_the_lead_creator()
-    {
-        $phoneNumber = $this->faker->phoneNumber;
-        $lead = Lead::factory()->create(['phone_number' => $phoneNumber]);
-
-        $this->assertEquals($phoneNumber, $lead->phone_number);
-    }
-
-    /** @test */
     public function it_has_a_list_of_custom_attributes()
     {
         $customAttributes = collect(['username' => $this->faker->userName]);
@@ -77,6 +69,14 @@ class LeadTest extends TestCase
         $lead = Lead::factory()->create(['form_completed_at' => $this->faker->date]);
 
         $this->assertInstanceOf(Carbon::class, $lead->form_completed_at);
+    }
+
+    /** @test */
+    public function it_has_a_phone()
+    {
+        $lead = Lead::factory()->withNullableFields()->create();
+
+        $this->assertInstanceOf(Phone::class, $lead->phone);
     }
 
     /** @test */

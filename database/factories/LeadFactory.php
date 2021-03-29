@@ -25,7 +25,7 @@ class LeadFactory extends Factory
             return [
                 'first_name' => $this->faker->firstName,
                 'last_name' => $this->faker->lastName,
-                'phone_number' => $this->faker->phoneNumber,
+                'phone_id' => randomOrCreate(app('phone')),
             ];
         });
     }
