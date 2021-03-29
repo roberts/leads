@@ -3,6 +3,7 @@
 namespace Roberts\Leads\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Roberts\Leads\Http\Livewire\LeadForm;
 use Roberts\Leads\Models\LeadField;
@@ -12,7 +13,7 @@ use Roberts\Leads\Tests\TestCase;
 
 class LeadFormTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     /** @test */
     public function it_shows_the_lead_form_component()
@@ -151,10 +152,15 @@ class LeadFormTest extends TestCase
             'lead_type_id' => $leadType->id,
             'number' => $step->number + 1,
         ]);
+        $field = LeadField::factory()->create([
+            'lead_step_id' => $step->id,
+            'rules' => 'required',
+        ]);
 
         Livewire::withQueryParams(['step' => $step->slug])
             ->test(LeadForm::class, ['leadType' => $leadType])
             ->assertSet('step', $step->slug)
+            ->set("attributes.{$field->name}", $this->faker->randomNumber)
             ->call('submit')
             ->assertSet('step', $nextStep->slug)
             ->assertSee($nextStep->title);
