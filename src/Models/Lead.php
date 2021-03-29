@@ -3,6 +3,7 @@
 namespace Roberts\Leads\Models;
 
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Roberts\Leads\Enums\LeadStatus;
 use Tipoff\Statuses\Traits\HasStatuses;
@@ -43,11 +44,11 @@ class Lead extends BaseModel
         });
     }
 
-    protected function generateLeadNumber(): string
+    protected function generateLeadNumber()
     {
         do {
-            $token = Str::of(Carbon::now('America/New_York')->format('ymdB'))->substr(1, 7) . Str::upper(Str::random(2));
-        } while (static::query()->where('lead_number', $token)->count()); //check if the token already exists and if it does, try again
+            $token = Str::of(Carbon::now(config('app.timezone'))->format('ymdB'))->substr(1, 7) . Str::upper(Str::random(2));
+        } while (static::query()->where('lead_number', $token)->exists());
 
         return $token;
     }
