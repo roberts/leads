@@ -1,9 +1,12 @@
 <div class="onboarding-form__block-group">
     <input
         type="number"
-        class="onboarding-form__text-input"
+        wire:model="attributes.{{ $field->name }}"
+        class="onboarding-form__text-input @if(!empty($attributes[$field->name])) onboarding-form__text-input--filled @endif"
         id="{{ $field->name }}"
     />
+
+    @error('attributes.' . $field->name) <p class="onboarding-form__error">{{ $message }}</p> @enderror
 
     <label
         for="{{ $field->name }}"

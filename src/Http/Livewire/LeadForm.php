@@ -10,6 +10,7 @@ class LeadForm extends Component
     public $leadType;
     public $step;
     protected $queryString = ['step'];
+    public $attributes = [];
 
     public function mount(LeadType $leadType)
     {
@@ -24,6 +25,30 @@ class LeadForm extends Component
     {
         return view('leads::livewire.lead-form')
             ->layout('leads::layout');
+    }
+
+    protected function rules()
+    {
+        return $this->activeStep->fields
+            ->keyBy(function ($field) {
+                return "attributes.{$field->name}";
+            })
+            ->map(function ($field) {
+                return $field->rules;
+            })
+            ->toArray();
+    }
+
+    protected function validationAttributes()
+    {
+        return $this->activeStep->fields
+            ->keyBy(function ($field) {
+                return "attributes.{$field->name}";
+            })
+            ->map(function ($field) {
+                return $field->label;
+            })
+            ->toArray();
     }
 
     public function getActiveStepProperty()
@@ -43,6 +68,8 @@ class LeadForm extends Component
 
     protected function proceed()
     {
+        $this->validate();
+
         if ($this->hasMoreSteps) {
             $step = $this->activeStep->next();
             $this->step = $step->slug;

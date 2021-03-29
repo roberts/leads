@@ -159,4 +159,28 @@ class LeadFormTest extends TestCase
             ->assertSet('step', $nextStep->slug)
             ->assertSee($nextStep->title);
     }
+
+    /** @test */
+    public function it_validates_the_lead_fields_upon_submit_call()
+    {
+        $leadType = LeadType::factory()->create();
+
+        $step = LeadStep::factory()->create([
+            'lead_type_id' => $leadType->id,
+        ]);
+
+        $field = LeadField::factory()->create([
+            'lead_step_id' => $step->id,
+            'rules' => 'required',
+        ]);
+
+        Livewire::withQueryParams(['step' => $step->slug])
+            ->test(LeadForm::class, ['leadType' => $leadType])
+            ->set("attributes.{$field->name}", null)
+            ->call('submit')
+            ->assertHasErrors([
+                "attributes.{$field->name}" => 'required',
+            ])
+            ->assertSee(__('validation.required', ['attribute' => $field->label]));
+    }
 }
