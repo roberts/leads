@@ -2,10 +2,8 @@
 
 namespace Roberts\Leads\Models;
 
-use Carbon\Carbon;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Roberts\Leads\Enums\LeadStatus;
+use Roberts\Leads\Services\GenerateLeadNumber;
 use Tipoff\Statuses\Traits\HasStatuses;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
@@ -36,21 +34,14 @@ class Lead extends BaseModel
         parent::boot();
 
         static::creating(function (Lead $lead) {
-            $lead->lead_number = $lead->lead_number ?: $lead->generateLeadNumber();
+            if (empty($lead->lead_number)) {
+                $lead->lead_number = app(GenerateLeadNumber::class)->__invoke($lead);
+            }
         });
 
         static::created(function (Lead $lead) {
             $lead->setLeadStatus(LeadStatus::OPEN);
         });
-    }
-
-    protected function generateLeadNumber()
-    {
-        do {
-            $token = Str::of(Carbon::now(config('app.timezone'))->format('ymdB'))->substr(1, 7) . Str::upper(Str::random(2));
-        } while (static::query()->where('lead_number', $token)->exists());
-
-        return $token;
     }
 
     public function type()

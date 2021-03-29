@@ -9,6 +9,7 @@ use Roberts\Leads\Enums\LeadStatus;
 use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Models\LeadType;
+use Roberts\Leads\Services\GenerateLeadNumber;
 use Roberts\Leads\Tests\Support\Models\Phone;
 use Roberts\Leads\Tests\TestCase;
 use Tipoff\Statuses\Models\StatusRecord;
@@ -17,6 +18,18 @@ class LeadTest extends TestCase
 {
     use RefreshDatabase;
     use WithFaker;
+
+    /** @test */
+    public function it_generates_a_lead_number_when_not_defined()
+    {
+        $this->app->instance(GenerateLeadNumber::class, static function () {
+            return '1234';
+        });
+
+        $lead = Lead::factory()->create();
+
+        self::assertEquals('1234', $lead->lead_number);
+    }
 
     /** @test */
     public function it_has_an_email()
