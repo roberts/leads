@@ -49,6 +49,10 @@ class Lead extends BaseModel
         static::created(function (Lead $lead) {
             $lead->setLeadStatus(LeadStatus::OPEN);
         });
+
+        static::saving(function (Lead $lead) {
+           $lead->custom_attributes = $lead->custom_attributes ?: [];
+        });
     }
 
     public function type()
