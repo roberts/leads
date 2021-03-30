@@ -25,15 +25,13 @@ class SaveLead
 
     public function save($attributes = [])
     {
-        $customAttributes = $this->lead->custom_attributes;
-
         foreach ($attributes as $dottedKey => $value) {
             $key = explode('.', $dottedKey)[0] ?: null;
 
             if ($this->lead->attributeExists($key)) {
                 $this->lead->{$key} = $value;
             } elseif ($this->lead->customAttributeExists($key)) {
-                Arr::set($customAttributes, $key, $value);
+                $this->lead->custom_attributes = Arr::add($this->lead->custom_attributes, $key, $value);
             } elseif ($key === 'phone') {
                 // fill/create or update phone
             } elseif ($key === 'business') {
@@ -42,8 +40,6 @@ class SaveLead
                 throw InvalidLeadProperty::create($key);
             }
         }
-
-        $this->lead->custom_attributes = $customAttributes;
 
         // save phone and business
         $this->lead->save();
