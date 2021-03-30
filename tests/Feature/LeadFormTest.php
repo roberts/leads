@@ -189,4 +189,22 @@ class LeadFormTest extends TestCase
             ])
             ->assertSee(__('validation.required', ['attribute' => $field->label]));
     }
+
+    /** @test */
+    public function it_calls_the_service_with_the_correct_data()
+    {
+        //
+    }
+
+    /** @test */
+    public function it_calls_the_service_with_the_correct_lead()
+    {
+        //
+    }
+
+    /** @test */
+    public function it_calls_the_service_with_the_correct_lead_type()
+    {
+        //
+    }
 }
