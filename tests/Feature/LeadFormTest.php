@@ -18,11 +18,7 @@ class LeadFormTest extends TestCase
     /** @test */
     public function it_shows_the_lead_form_component()
     {
-        $leadType = LeadType::factory()->create();
-        LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-            'number' => 1,
-        ]);
+        $leadType = $this->setUpLeadType();
 
         $this->get($leadType->getRouteKey())
             ->assertOk()
@@ -32,11 +28,7 @@ class LeadFormTest extends TestCase
     /** @test */
     public function it_shows_the_lead_type_name()
     {
-        $leadType = LeadType::factory()->create();
-        LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-            'number' => 1,
-        ]);
+        $leadType = $this->setUpLeadType();
 
         Livewire::test(LeadForm::class, ['leadType' => $leadType])
             ->assertSee($leadType->name);
@@ -45,11 +37,8 @@ class LeadFormTest extends TestCase
     /** @test */
     public function it_starts_at_the_initial_step_if_no_step_is_defined()
     {
-        $leadType = LeadType::factory()->create();
-        $initialStep = LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-            'number' => 1,
-        ]);
+        $leadType = $this->setUpLeadType();
+        $initialStep = $leadType->steps->where('number', 1)->first();
 
         Livewire::test(LeadForm::class, ['leadType' => $leadType])
             ->assertSet('step', $initialStep->slug)
@@ -59,10 +48,8 @@ class LeadFormTest extends TestCase
     /** @test */
     public function it_renders_the_step_defined_by_the_query_string()
     {
-        $leadType = LeadType::factory()->create();
-        $step = LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-        ]);
+        $leadType = $this->setUpLeadType();
+        $step = $leadType->steps->random();
 
         Livewire::withQueryParams(['step' => $step->slug])
             ->test(LeadForm::class, ['leadType' => $leadType])
@@ -73,14 +60,9 @@ class LeadFormTest extends TestCase
     /** @test */
     public function it_shows_all_fields_attached_to_the_active_step()
     {
-        $leadType = LeadType::factory()->create();
-        $step = LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-        ]);
-
-        $fields = LeadField::factory()->count(3)->create([
-            'lead_step_id' => $step->id,
-        ]);
+        $leadType = $this->setUpLeadType();
+        $step = $leadType->steps->random();
+        $fields = $step->fields;
 
         $livewire = Livewire::withQueryParams(['step' => $step->slug])
             ->test(LeadForm::class, ['leadType' => $leadType]);
@@ -94,28 +76,20 @@ class LeadFormTest extends TestCase
     /** @test */
     public function it_does_not_show_fields_from_other_steps()
     {
-        $leadType = LeadType::factory()->create();
-        $step = LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-        ]);
+        $leadType = $this->setUpLeadType();
+        $step = $leadType->steps->random();
+        $field = LeadField::factory()->create();
 
-        $fields = LeadField::factory()->create();
-
-        $livewire = Livewire::withQueryParams(['step' => $step->slug])
-            ->test(LeadForm::class, ['leadType' => $leadType]);
-
-        $fields->each(function ($field) use ($livewire) {
-            $livewire->assertDontSee($field->label);
-        });
+        Livewire::withQueryParams(['step' => $step->slug])
+            ->test(LeadForm::class, ['leadType' => $leadType])
+            ->assertDontSee($field->label);
     }
 
     /** @test */
     public function it_can_tell_if_it_does_not_have_more_steps_ahead()
     {
-        $leadType = LeadType::factory()->create();
-        $step = LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-        ]);
+        $leadType = $this->setUpLeadType();
+        $step = $leadType->steps->sortByDesc('number')->first();
 
         Livewire::withQueryParams(['step' => $step->slug])
             ->test(LeadForm::class, ['leadType' => $leadType])
@@ -126,14 +100,8 @@ class LeadFormTest extends TestCase
     /** @test */
     public function it_can_tell_if_it_has_more_steps_ahead()
     {
-        $leadType = LeadType::factory()->create();
-        $step = LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-        ]);
-        LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-            'number' => $step->number + 1,
-        ]);
+        $leadType = $this->setUpLeadType();
+        $step = $leadType->steps->where('number', 1)->first();
 
         Livewire::withQueryParams(['step' => $step->slug])
             ->test(LeadForm::class, ['leadType' => $leadType])
@@ -144,24 +112,19 @@ class LeadFormTest extends TestCase
     /** @test */
     public function it_proceeds_to_the_next_step_when_the_form_is_submitted()
     {
-        $leadType = LeadType::factory()->create();
-        $step = LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-        ]);
-        $nextStep = LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-            'number' => $step->number + 1,
-        ]);
-        $field = LeadField::factory()->create([
-            'lead_step_id' => $step->id,
-            'rules' => 'required',
-        ]);
+        $leadType = $this->setUpLeadType();
+        $step = $leadType->steps->where('number', 1)->first();
+        $nextStep = $leadType->steps->where('number', 2)->first();
 
-        Livewire::withQueryParams(['step' => $step->slug])
+        $livewire = Livewire::withQueryParams(['step' => $step->slug])
             ->test(LeadForm::class, ['leadType' => $leadType])
-            ->assertSet('step', $step->slug)
-            ->set("attributes.{$field->name}", $this->faker->randomNumber)
-            ->call('submit')
+            ->assertSet('step', $step->slug);
+
+        $step->fields->each(function ($field) use ($livewire) {
+            $livewire->set("attributes.{$field->name}", $this->faker->randomNumber);
+        });
+
+        $livewire->call('submit')
             ->assertSet('step', $nextStep->slug)
             ->assertSee($nextStep->title);
     }
@@ -169,16 +132,9 @@ class LeadFormTest extends TestCase
     /** @test */
     public function it_validates_the_lead_fields_upon_submit_call()
     {
-        $leadType = LeadType::factory()->create();
-
-        $step = LeadStep::factory()->create([
-            'lead_type_id' => $leadType->id,
-        ]);
-
-        $field = LeadField::factory()->create([
-            'lead_step_id' => $step->id,
-            'rules' => 'required',
-        ]);
+        $leadType = $this->setUpLeadType();
+        $step = $leadType->steps()->create(LeadStep::factory()->raw());
+        $field = $step->fields()->create(LeadField::factory()->raw(['rules' => 'required']));
 
         Livewire::withQueryParams(['step' => $step->slug])
             ->test(LeadForm::class, ['leadType' => $leadType])
@@ -206,5 +162,24 @@ class LeadFormTest extends TestCase
     public function it_calls_the_service_with_the_correct_lead_type()
     {
         //
+    }
+
+    protected function setUpLeadType()
+    {
+        $leadType = LeadType::factory()->create();
+
+        for ($stepNumber = 1; $stepNumber <= 2; $stepNumber++) {
+            $step = LeadStep::factory()
+                ->create([
+                    'lead_type_id' => $leadType->id,
+                    'number' => $stepNumber,
+                ]);
+
+            LeadField::factory()
+                ->count(2)
+                ->create(['lead_step_id' => $step->id]);
+        }
+
+        return $leadType;
     }
 }
