@@ -63,13 +63,13 @@ class LeadForm extends Component
 
     public function submit()
     {
+        $this->validate();
+
         $this->proceed();
     }
 
     protected function proceed()
     {
-        $this->validate();
-
         if ($this->hasMoreSteps) {
             $step = $this->activeStep->next();
             $this->step = $step->slug;
