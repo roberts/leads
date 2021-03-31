@@ -6,6 +6,8 @@ use Livewire\Livewire;
 use Roberts\Leads\Http\Livewire\LeadForm;
 use Roberts\Leads\Services\GenerateLeadNumber;
 use Roberts\Leads\Services\GenerateLeadNumberBasedOnTime;
+use Roberts\Leads\Services\SaveLead;
+use Roberts\Leads\Services\SaveLeadFromDottedAttributes;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
 
@@ -26,6 +28,7 @@ class LeadsServiceProvider extends TipoffServiceProvider
         parent::register();
 
         $this->app->bind(GenerateLeadNumber::class, GenerateLeadNumberBasedOnTime::class);
+        $this->app->bind(SaveLead::class, SaveLeadFromDottedAttributes::class);
     }
 
     public function configureTipoffPackage(TipoffPackage $tipoffPackage): void
