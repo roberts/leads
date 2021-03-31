@@ -11,15 +11,26 @@ class SaveLeadFromDottedAttributes implements SaveLead
 {
     protected $lead;
 
+    protected function ensureLeadIsSet()
+    {
+        if (is_null($this->lead)) {
+            $this->lead = new Lead;
+        }
+
+        return $this;
+    }
+
     public function setLead(Lead $lead = null)
     {
-        $this->lead = $lead ?: new Lead;
+        $this->lead = $lead;
 
         return $this;
     }
 
     public function setType(LeadType $leadType)
     {
+        $this->ensureLeadIsSet();
+
         $this->lead->lead_type_id = $leadType->id;
 
         return $this;
@@ -27,6 +38,9 @@ class SaveLeadFromDottedAttributes implements SaveLead
 
     public function fill($attributes = [])
     {
+        $this->ensureLeadIsSet();
+
+
         foreach ($attributes as $dottedKey => $value) {
             $key = explode('.', $dottedKey)[0] ?: null;
 
@@ -42,10 +56,14 @@ class SaveLeadFromDottedAttributes implements SaveLead
                 throw InvalidLeadProperty::create($key);
             }
         }
+
+        return $this;
     }
 
     public function save()
     {
+        $this->ensureLeadIsSet();
+
         $this->lead->save();
 
         return $this->lead;
