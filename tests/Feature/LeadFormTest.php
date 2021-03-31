@@ -189,7 +189,7 @@ class LeadFormTest extends TestCase
         $updatedLead = Lead::factory()->create();
 
         $this->mock(SaveLead::class, function ($mock) use ($updatedLead) {
-           $mock->shouldReceive('setLead->setType->fill->save')
+            $mock->shouldReceive('setLead->setType->fill->save')
                ->andReturn($updatedLead);
         });
 
