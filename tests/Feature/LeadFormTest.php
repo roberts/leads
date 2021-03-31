@@ -6,14 +6,27 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Roberts\Leads\Http\Livewire\LeadForm;
+use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\LeadField;
 use Roberts\Leads\Models\LeadStep;
 use Roberts\Leads\Models\LeadType;
+use Roberts\Leads\Services\SaveLead;
+use Roberts\Leads\Tests\Support\Services\SaveLeadSpy;
 use Roberts\Leads\Tests\TestCase;
 
 class LeadFormTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
+
+    protected $saveLeadSpy;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->saveLeadSpy = new SaveLeadSpy;
+        $this->swap(SaveLead::class, $this->saveLeadSpy);
+    }
 
     /** @test */
     public function it_shows_the_lead_form_component()
@@ -149,19 +162,39 @@ class LeadFormTest extends TestCase
     /** @test */
     public function it_calls_the_service_with_the_correct_data()
     {
-        //
+        $leadType = $this->setUpLeadType();
+        $lead = Lead::factory()->create();
+        $attributes = [
+            $this->faker->word => $this->faker->sentence,
+        ];
+
+        Livewire::test(LeadForm::class, ['leadType' => $leadType])
+            ->set('lead', $lead)
+            ->set('attributes', $attributes)
+            ->call('submit');
+
+        $this->assertNotNull($this->saveLeadSpy->lead);
+        $this->assertEquals($lead->id, $this->saveLeadSpy->lead->id);
+        $this->assertNotNull($this->saveLeadSpy->leadType);
+        $this->assertEquals($leadType->id, $this->saveLeadSpy->leadType->id);
+        $this->assertSame($attributes, $this->saveLeadSpy->attributes);
+        $this->assertTrue($this->saveLeadSpy->saved);
     }
 
     /** @test */
-    public function it_calls_the_service_with_the_correct_lead()
+    public function it_keeps_the_lead_updated()
     {
-        //
-    }
+        $leadType = $this->setUpLeadType();
+        $updatedLead = Lead::factory()->create();
 
-    /** @test */
-    public function it_calls_the_service_with_the_correct_lead_type()
-    {
-        //
+        $this->mock(SaveLead::class, function ($mock) use ($updatedLead) {
+           $mock->shouldReceive('setLead->setType->fill->save')
+               ->andReturn($updatedLead);
+        });
+
+        Livewire::test(LeadForm::class, ['leadType' => $leadType])
+            ->call('submit')
+            ->assertSet('lead', $updatedLead);
     }
 
     protected function setUpLeadType()

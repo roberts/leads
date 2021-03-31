@@ -4,6 +4,7 @@ namespace Roberts\Leads\Http\Livewire;
 
 use Livewire\Component;
 use Roberts\Leads\Models\LeadType;
+use Roberts\Leads\Services\SaveLead;
 
 class LeadForm extends Component
 {
@@ -11,6 +12,7 @@ class LeadForm extends Component
     public $step;
     protected $queryString = ['step'];
     public $attributes = [];
+    public $lead;
 
     public function mount(LeadType $leadType)
     {
@@ -64,6 +66,12 @@ class LeadForm extends Component
     public function submit()
     {
         $this->validate();
+
+        $this->lead = app(SaveLead::class)
+            ->setLead($this->lead)
+            ->setType($this->leadType)
+            ->fill($this->attributes)
+            ->save();
 
         $this->proceed();
     }
