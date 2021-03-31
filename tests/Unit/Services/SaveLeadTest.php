@@ -15,7 +15,8 @@ use Roberts\Leads\Tests\TestCase;
 
 class SaveLeadTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /** @test */
     public function it_sets_the_lead()

@@ -16,7 +16,8 @@ use Roberts\Leads\Tests\TestCase;
 
 class LeadFormTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     protected $saveLeadSpy;
 
