@@ -4,6 +4,7 @@ namespace Roberts\Leads\Tests\Unit\Services;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Arr;
 use Roberts\Leads\Exceptions\InvalidLeadProperty;
 use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\LeadField;
@@ -17,92 +18,96 @@ class SaveLeadTest extends TestCase
     use RefreshDatabase, WithFaker;
 
     /** @test */
+    public function it_sets_the_lead()
+    {
+        $lead = Lead::factory()->create();
+
+        $savedLead = $this->service()
+            ->setLead($lead)
+            ->save();
+
+        $this->assertEquals($lead->id, $savedLead->id);
+    }
+
+    /** @test */
     public function it_sets_the_lead_type()
     {
         $leadType = $this->setUpLeadType();
+        $lead = Lead::factory()->create();
 
-        $this->service()
-            ->withLeadType($leadType)
-            ->save(['email' => $this->faker->email]);
+        $returnedLead = $this->service()
+            ->setLead($lead)
+            ->setType($leadType)
+            ->save();
 
-        $this->assertDatabaseHas('leads', [
-            'lead_type_id' => $leadType->id,
-        ]);
+        $this->assertEquals($leadType->id, $returnedLead->lead_type_id);
     }
 
     /** @test */
     public function it_creates_a_lead()
     {
-        $attributes = [
-            'email' => $this->faker->email,
-        ];
+        $attributes = Lead::factory()->raw();
 
         $this->service()
-            ->withLeadType($this->setUpLeadType())
-            ->save($attributes);
+            ->fill($attributes)
+            ->save();
 
-        $this->assertDatabaseHas('leads', $attributes);
+        $this->assertDatabaseHas('leads', Arr::only($attributes, 'email'));
     }
 
     /** @test */
     public function it_updates_a_lead()
     {
-        $previousAttributes = [
-            'email' => $this->faker->unique()->email,
-            'lead_type_id' => $this->setUpLeadType()->id,
-        ];
+        $lead = Lead::factory()->create();
         $attributes = ['email' => $this->faker->unique()->email];
 
-        $lead = Lead::factory()->create($previousAttributes);
+        $this->service()
+            ->setLead($lead)
+            ->fill($attributes)
+            ->save();
 
-        $this->service($lead)
-            ->save($attributes);
-
-        $this->assertNotEquals($previousAttributes['email'], $lead->email);
-        $this->assertEquals($attributes['email'], $lead->email);
+        $this->assertEquals($attributes['email'], $lead->fresh()->email);
     }
 
     /** @test */
     public function it_creates_a_phone()
     {
-
+        //
     }
 
     /** @test */
     public function it_updates_a_phone()
     {
-
+        //
     }
 
     /** @test */
     public function it_creates_a_business()
     {
-
+        //
     }
 
     /** @test */
     public function it_updates_a_business()
     {
-
+        //
     }
 
     /** @test */
-    public function it_saves_a_lead_attribute()
+    public function it_fills_lead_attributes()
     {
-        $lead = Lead::factory()->create([
-            'lead_type_id' => $this->setUpLeadType()->id,
-        ]);
-
         $attributes = ['first_name' => $this->faker->firstName];
 
-        $this->service($lead)
-            ->save($attributes);
+        $returnedLead = $this->service()
+            ->setLead(Lead::factory()->create())
+            ->fill($attributes)
+            ->save();
 
-        $this->assertEquals($attributes['first_name'], $lead->first_name);
+        $this->assertEquals($attributes['first_name'], $returnedLead->first_name);
     }
 
     /** @test */
-    public function it_saves_a_custom_attribute()
+    public function it_fills_custom_attributes()
     {
         $leadType = $this->setUpLeadType();
         $leadField = $leadType->fields->random();
@@ -110,15 +115,17 @@ class SaveLeadTest extends TestCase
 
         $attributes = [$leadField->name => $this->faker->word];
 
-        $this->service($lead)
-            ->save($attributes);
+        $returnedLead = $this->service()
+            ->setLead($lead)
+            ->fill($attributes)
+            ->save();
 
-        $this->assertArrayHasKey($leadField->name, $lead->custom_attributes);
-        $this->assertEquals($attributes[$leadField->name], $lead->custom_attributes[$leadField->name]);
+        $this->assertArrayHasKey($leadField->name, $returnedLead->custom_attributes);
+        $this->assertEquals($attributes[$leadField->name], $returnedLead->custom_attributes[$leadField->name]);
     }
 
     /** @test */
-    public function it_throws_an_exception_when_a_property_cannot_be_found()
+    public function it_throws_an_exception_when_a_property_cannot_be_found_in_the_lead_type_fields()
     {
         $lead = Lead::factory()->create([
             'lead_type_id' => $this->setUpLeadType(),
@@ -128,13 +135,14 @@ class SaveLeadTest extends TestCase
 
         $this->expectException(InvalidLeadProperty::class);
 
-        $this->service($lead)
-            ->save($attributes);
+        $this->service()
+            ->setLead($lead)
+            ->fill($attributes);
     }
 
-    protected function service(Lead $lead = null)
+    protected function service()
     {
-        return new SaveLead($lead);
+        return app(SaveLead::class);
     }
 
     protected function setUpLeadType()
