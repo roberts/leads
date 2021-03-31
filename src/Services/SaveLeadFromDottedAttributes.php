@@ -68,7 +68,7 @@ class SaveLeadFromDottedAttributes implements SaveLead
             if ($this->lead->attributeExists($key)) {
                 $this->lead->{$key} = $value;
             } elseif ($this->lead->customAttributeExists($key)) {
-                $this->lead->custom_attributes = Arr::add($this->lead->custom_attributes, $key, $value);
+                $this->lead->setCustomAttribute($key, $value);
             } elseif ($key === 'phone') {
                 $this->phone = $this->phone ?: app('phone');
                 $this->phone->fill($attributes['phone']);

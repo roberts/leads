@@ -2,6 +2,7 @@
 
 namespace Roberts\Leads\Models;
 
+use Illuminate\Support\Arr;
 use Roberts\Leads\Enums\LeadStatus;
 use Roberts\Leads\Services\GenerateLeadNumber;
 use Tipoff\Statuses\Traits\HasStatuses;
@@ -93,6 +94,14 @@ class Lead extends BaseModel
     public function setCustomAttributesAttribute($value)
     {
         $this->attributes['custom_attributes'] = json_encode($value);
+    }
+
+    public function setCustomAttribute($attribute, $value)
+    {
+        $this->custom_attributes = array_merge(
+            $this->custom_attributes->toArray(),
+            [$attribute => $value]
+        );
     }
 
     public function attributeExists($attribute)
