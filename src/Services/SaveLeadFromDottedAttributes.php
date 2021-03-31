@@ -5,16 +5,27 @@ namespace Roberts\Leads\Services;
 use Illuminate\Support\Arr;
 use Roberts\Leads\Exceptions\InvalidLeadProperty;
 use Roberts\Leads\Models\Lead;
+use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Models\LeadType;
 
 class SaveLeadFromDottedAttributes implements SaveLead
 {
     protected $lead;
+    protected $business;
+    protected $phone;
 
-    protected function ensureLeadIsSet()
+    protected function loadProperties()
     {
         if (is_null($this->lead)) {
             $this->lead = new Lead;
+        }
+
+        if (is_null($this->business)) {
+            $this->business = $this->lead->business;
+        }
+
+        if (is_null($this->phone)) {
+            $this->phone = $this->lead->phone;
         }
 
         return $this;
@@ -29,29 +40,41 @@ class SaveLeadFromDottedAttributes implements SaveLead
 
     public function setType(LeadType $leadType)
     {
-        $this->ensureLeadIsSet();
+        $this->loadProperties();
 
         $this->lead->lead_type_id = $leadType->id;
 
         return $this;
     }
 
+    protected function parseAttributes($attributes)
+    {
+        $parsedArray = [];
+
+        foreach ($attributes as $key => $value) {
+            Arr::set($parsedArray, $key, $value);
+        }
+
+        return $parsedArray;
+    }
+
     public function fill($attributes = [])
     {
-        $this->ensureLeadIsSet();
+        $this->loadProperties();
 
+        $attributes = $this->parseAttributes($attributes);
 
-        foreach ($attributes as $dottedKey => $value) {
-            $key = explode('.', $dottedKey)[0] ?: null;
-
+        foreach ($attributes as $key => $value) {
             if ($this->lead->attributeExists($key)) {
                 $this->lead->{$key} = $value;
             } elseif ($this->lead->customAttributeExists($key)) {
                 $this->lead->custom_attributes = Arr::add($this->lead->custom_attributes, $key, $value);
             } elseif ($key === 'phone') {
-                // fill/create or update phone
+                $this->phone = $this->phone ?: app('phone');
+                $this->phone->fill($attributes['phone']);
             } elseif ($key === 'business') {
-                // fill/create or update business
+                $this->business = $this->business ?: new LeadBusiness;
+                $this->business->fill($attributes['business']);
             } else {
                 throw InvalidLeadProperty::create($key);
             }
@@ -62,10 +85,19 @@ class SaveLeadFromDottedAttributes implements SaveLead
 
     public function save()
     {
-        $this->ensureLeadIsSet();
+        $this->loadProperties();
+
+        if ($this->phone) {
+            $this->phone->save();
+            $this->lead->phone_id = $this->phone->id;
+        }
 
         $this->lead->save();
 
-        return $this->lead;
+        if ($this->business) {
+            $this->lead->business()->save($this->business);
+        }
+
+        return $this->lead->fresh();
     }
 }
