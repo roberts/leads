@@ -2,7 +2,6 @@
 
 namespace Roberts\Leads\Models;
 
-use Illuminate\Support\Arr;
 use Roberts\Leads\Enums\LeadStatus;
 use Roberts\Leads\Services\GenerateLeadNumber;
 use Tipoff\Statuses\Traits\HasStatuses;
@@ -52,7 +51,7 @@ class Lead extends BaseModel
         });
 
         static::saving(function (Lead $lead) {
-           $lead->custom_attributes = $lead->custom_attributes ?: [];
+            $lead->custom_attributes = $lead->custom_attributes ?: [];
         });
     }
 
