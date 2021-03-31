@@ -13,7 +13,7 @@ class LeadFactory extends Factory
     public function definition()
     {
         return [
-            'email' => $this->faker->email,
+            'email' => $this->faker->unique()->email,
             'lead_type_id' => LeadType::factory(),
             'custom_attributes' => [],
         ];
