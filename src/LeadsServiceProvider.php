@@ -3,7 +3,11 @@
 namespace Roberts\Leads;
 
 use Livewire\Livewire;
-use Roberts\Leads\Http\Livewire\OnboardingForm;
+use Roberts\Leads\Http\Livewire\LeadForm;
+use Roberts\Leads\Services\GenerateLeadNumber;
+use Roberts\Leads\Services\GenerateLeadNumberBasedOnTime;
+use Roberts\Leads\Services\SaveLead;
+use Roberts\Leads\Services\SaveLeadFromDottedAttributes;
 use Tipoff\Support\TipoffPackage;
 use Tipoff\Support\TipoffServiceProvider;
 
@@ -19,6 +23,14 @@ class LeadsServiceProvider extends TipoffServiceProvider
         $this->registerLivewireComponents();
     }
 
+    public function register()
+    {
+        parent::register();
+
+        $this->app->bind(GenerateLeadNumber::class, GenerateLeadNumberBasedOnTime::class);
+        $this->app->bind(SaveLead::class, SaveLeadFromDottedAttributes::class);
+    }
+
     public function configureTipoffPackage(TipoffPackage $tipoffPackage): void
     {
         $tipoffPackage
@@ -30,17 +42,6 @@ class LeadsServiceProvider extends TipoffServiceProvider
 
     protected function registerLivewireComponents()
     {
-        Livewire::component('onboarding-form', OnboardingForm::class);
-        Livewire::component('onboarding-form.presentation', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.presentation', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.contact-details', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.mailing-address', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.business-details', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.payroll-classifications', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.comp-insurance-check', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.comp-insurance', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.comp-claims-check', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.comp-claims', OnboardingForm\Presentation::class);
-        Livewire::component('onboarding-form.completed', OnboardingForm\Presentation::class);
+        Livewire::component('lead-form', LeadForm::class);
     }
 }

@@ -2,10 +2,8 @@
 
 namespace Roberts\Leads\Models;
 
-use Assert\Assert;
-use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Roberts\Leads\Enums\LeadStatus;
+use Roberts\Leads\Services\GenerateLeadNumber;
 use Tipoff\Statuses\Traits\HasStatuses;
 use Tipoff\Support\Models\BaseModel;
 use Tipoff\Support\Traits\HasCreator;
@@ -19,9 +17,16 @@ class Lead extends BaseModel
     use HasUpdater;
     use HasStatuses;
 
-    protected $guarded = [
-        'id',
-        'lead_number',
+    protected $fillable = [
+        'email',
+        'first_name',
+        'last_name',
+        'custom_attributes',
+        'lead_type_id',
+        'phone_id',
+        'user_id',
+        'creator_id',
+        'updater_id',
     ];
 
     protected $casts = [
@@ -36,7 +41,9 @@ class Lead extends BaseModel
         parent::boot();
 
         static::creating(function (Lead $lead) {
-            $lead->lead_number = $lead->lead_number ?: $lead->generateLeadNumber();
+            if (empty($lead->lead_number)) {
+                $lead->lead_number = app(GenerateLeadNumber::class)->__invoke($lead);
+            }
         });
 
         static::created(function (Lead $lead) {
@@ -44,19 +51,18 @@ class Lead extends BaseModel
         });
 
         static::saving(function (Lead $lead) {
-            Assert::lazy()
-                ->that($lead->email)->notEmpty('A lead must have an email address.')
-                ->verifyNow();
+            $lead->custom_attributes = $lead->custom_attributes ?: [];
         });
     }
 
-    protected function generateLeadNumber(): string
+    public function type()
     {
-        do {
-            $token = Str::of(Carbon::now('America/New_York')->format('ymdB'))->substr(1, 7) . Str::upper(Str::random(2));
-        } while (static::query()->where('lead_number', $token)->count()); //check if the token already exists and if it does, try again
+        return $this->belongsTo(LeadType::class, 'lead_type_id');
+    }
 
-        return $token;
+    public function phone()
+    {
+        return $this->belongsTo(app('phone'));
     }
 
     public function setLeadStatus(string $status)
@@ -77,5 +83,34 @@ class Lead extends BaseModel
     public function business()
     {
         return $this->hasOne(LeadBusiness::class);
+    }
+
+    public function getCustomAttributesAttribute($value)
+    {
+        return ! empty($value) ? collect(json_decode($value, true)) : [];
+    }
+
+    public function setCustomAttributesAttribute($value)
+    {
+        $this->attributes['custom_attributes'] = json_encode($value);
+    }
+
+    public function setCustomAttribute($attribute, $value)
+    {
+        $this->custom_attributes = array_merge(
+            $this->custom_attributes->toArray(),
+            [$attribute => $value]
+        );
+    }
+
+    public function attributeExists($attribute)
+    {
+        return in_array($attribute, $this->getFillable(), true);
+    }
+
+    public function customAttributeExists($attribute)
+    {
+        return ! empty($this->type)
+            && in_array($attribute, $this->type->fields->pluck('name')->toArray(), true);
     }
 }

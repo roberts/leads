@@ -8,6 +8,11 @@ use Illuminate\Support\Carbon;
 use Roberts\Leads\Enums\LeadStatus;
 use Roberts\Leads\Models\Lead;
 use Roberts\Leads\Models\LeadBusiness;
+use Roberts\Leads\Models\LeadField;
+use Roberts\Leads\Models\LeadStep;
+use Roberts\Leads\Models\LeadType;
+use Roberts\Leads\Services\GenerateLeadNumber;
+use Roberts\Leads\Tests\Support\Models\Phone;
 use Roberts\Leads\Tests\TestCase;
 use Tipoff\Statuses\Models\StatusRecord;
 
@@ -15,6 +20,18 @@ class LeadTest extends TestCase
 {
     use RefreshDatabase;
     use WithFaker;
+
+    /** @test */
+    public function it_generates_a_lead_number_when_not_defined()
+    {
+        $this->app->instance(GenerateLeadNumber::class, static function () {
+            return '1234';
+        });
+
+        $lead = Lead::factory()->create();
+
+        self::assertEquals('1234', $lead->lead_number);
+    }
 
     /** @test */
     public function it_has_an_email()
@@ -44,21 +61,13 @@ class LeadTest extends TestCase
     }
 
     /** @test */
-    public function it_has_the_position_of_the_lead_creator()
+    public function it_has_a_list_of_custom_attributes()
     {
-        $position = $this->faker->word;
-        $lead = Lead::factory()->create(['position' => $position]);
+        $customAttributes = collect(['username' => $this->faker->userName]);
 
-        $this->assertEquals($position, $lead->position);
-    }
+        $lead = Lead::factory()->create(['custom_attributes' => $customAttributes]);
 
-    /** @test */
-    public function it_has_the_phone_number_of_the_lead_creator()
-    {
-        $phoneNumber = $this->faker->phoneNumber;
-        $lead = Lead::factory()->create(['phone_number' => $phoneNumber]);
-
-        $this->assertEquals($phoneNumber, $lead->phone_number);
+        $this->assertEquals($customAttributes, $lead->custom_attributes);
     }
 
     /** @test */
@@ -78,12 +87,28 @@ class LeadTest extends TestCase
     }
 
     /** @test */
+    public function it_has_a_phone()
+    {
+        $lead = Lead::factory()->withNullableFields()->create();
+
+        $this->assertInstanceOf(Phone::class, $lead->phone);
+    }
+
+    /** @test */
     public function it_is_associated_with_a_business()
     {
         $lead = Lead::factory()->create();
         LeadBusiness::factory()->create(['lead_id' => $lead->id]);
 
         $this->assertInstanceOf(LeadBusiness::class, $lead->business);
+    }
+
+    /** @test */
+    public function it_has_a_type()
+    {
+        $lead = Lead::factory()->create();
+
+        $this->assertInstanceOf(LeadType::class, $lead->type);
     }
 
     /** @test */
@@ -120,5 +145,42 @@ class LeadTest extends TestCase
         $lead = Lead::factory()->create();
 
         $this->assertEquals(LeadStatus::OPEN, $lead->getLeadStatus());
+    }
+
+    /** @test */
+    public function it_determines_if_an_attribute_exists()
+    {
+        $lead = Lead::factory()->create();
+
+        $this->assertTrue($lead->attributeExists('email'));
+    }
+
+    /** @test */
+    public function it_determines_if_an_attribute_does_not_exist()
+    {
+        $lead = Lead::factory()->create();
+
+        $this->assertFalse($lead->attributeExists('invalid-attribute'));
+    }
+
+    /** @test */
+    public function it_determines_if_a_custom_attribute_exists_based_on_the_lead_type_fields()
+    {
+        $leadType = LeadType::factory()->create();
+        $leadStep = LeadStep::factory()->create(['lead_type_id' => $leadType->id]);
+        $leadField = LeadField::factory()->create(['lead_step_id' => $leadStep->id]);
+        $lead = Lead::factory()->create([
+            'lead_type_id' => $leadType->id,
+        ]);
+
+        $this->assertTrue($lead->customAttributeExists($leadField->name));
+    }
+
+    /** @test */
+    public function it_determines_if_a_custom_attribute_does_not_exist_based_on_the_lead_type_fields()
+    {
+        $lead = Lead::factory()->create();
+
+        $this->assertFalse($lead->customAttributeExists('pet_name'));
     }
 }

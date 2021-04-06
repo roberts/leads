@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Roberts\Leads\Models\LeadBusiness;
+use Roberts\Leads\Models\LeadType;
 
 class CreateLeadsTable extends Migration
 {
@@ -15,13 +16,14 @@ class CreateLeadsTable extends Migration
             $table->string('email');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('position')->nullable();
-            $table->string('phone_number')->nullable(); // Will be replaced later with relationship to Phone model in tipoff/addresses
+            $table->json('custom_attributes');
 
             // Timestamps of when various processes completed. Will also have statuses added
             $table->dateTime('form_completed_at')->nullable();
             $table->dateTime('verified_at')->nullable();
 
+            $table->foreignIdFor(LeadType::class);
+            $table->foreignIdFor(app('phone'))->nullable();
             $table->foreignIdFor(app('user'))->nullable(); // Can be added later if the email from the lead matches a user in the system
             $table->foreignIdFor(app('user'), 'creator_id')->nullable(); // Will seldom be used, but is needed in case a lead is added by a staff member on behalf of a lead that called in.
             $table->foreignIdFor(app('user'), 'updater_id')->nullable(); // Most fields will be locked for updates in Nova, but we may allow some to be updated by staff.

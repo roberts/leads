@@ -7,6 +7,7 @@ namespace Roberts\Leads\Tests;
 use Laravel\Nova\NovaCoreServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Roberts\Leads\LeadsServiceProvider;
+use Roberts\Leads\Tests\Support\Models\Phone;
 use Spatie\Permission\PermissionServiceProvider;
 use Tipoff\Authorization\AuthorizationServiceProvider;
 use Tipoff\Statuses\StatusesServiceProvider;
@@ -28,5 +29,10 @@ class TestCase extends BaseTestCase
             LeadsServiceProvider::class,
             LivewireServiceProvider::class,
         ];
+    }
+
+    public function getEnvironmentSetUp($app)
+    {
+        $app['config']->set('tipoff.model_class.phone', Phone::class);
     }
 }
