@@ -16,7 +16,6 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "bensampo/laravel-enum": "^3.3",
         "ext-json": "*",
         "tipoff/authorization": "^2.8.0",
         "tipoff/locations": "^2.9.8",
