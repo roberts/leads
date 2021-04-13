@@ -78,7 +78,7 @@ class SaveLeadTest extends TestCase
         $this->assertNull($lead->phone);
 
         $attributes = [
-            'phone.number' => $this->faker->phoneNumber,
+            'phone.full_number' => $this->faker->phoneNumber,
         ];
 
         $returnedLead = $this->service()

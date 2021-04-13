@@ -12,8 +12,8 @@ use Roberts\Leads\Models\LeadField;
 use Roberts\Leads\Models\LeadStep;
 use Roberts\Leads\Models\LeadType;
 use Roberts\Leads\Services\GenerateLeadNumber;
-use Roberts\Leads\Tests\Support\Models\Phone;
 use Roberts\Leads\Tests\TestCase;
+use Tipoff\Addresses\Models\Phone;
 use Tipoff\Statuses\Models\StatusRecord;
 
 class LeadTest extends TestCase

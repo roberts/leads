@@ -9,6 +9,7 @@ use Livewire\LivewireServiceProvider;
 use Roberts\Leads\LeadsServiceProvider;
 use Roberts\Leads\Tests\Support\Models\Phone;
 use Spatie\Permission\PermissionServiceProvider;
+use Tipoff\Addresses\AddressesServiceProvider;
 use Tipoff\Authorization\AuthorizationServiceProvider;
 use Tipoff\Statuses\StatusesServiceProvider;
 use Tipoff\Support\SupportServiceProvider;
@@ -23,16 +24,12 @@ class TestCase extends BaseTestCase
             NovaCoreServiceProvider::class,
             NovaPackageServiceProvider::class,
             SupportServiceProvider::class,
+            AddressesServiceProvider::class,
             StatusesServiceProvider::class,
             AuthorizationServiceProvider::class,
             PermissionServiceProvider::class,
             LeadsServiceProvider::class,
             LivewireServiceProvider::class,
         ];
-    }
-
-    public function getEnvironmentSetUp($app)
-    {
-        $app['config']->set('tipoff.model_class.phone', Phone::class);
     }
 }
