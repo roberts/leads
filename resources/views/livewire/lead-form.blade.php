@@ -7,7 +7,7 @@
 
     <form wire:submit.prevent="submit">
         @foreach($this->activeStep->fields as $field)
-            @include('inputs.' . $field->type)
+            @include('leads::inputs.' . $field->type)
         @endforeach
 
         @if($this->hasMoreSteps)
