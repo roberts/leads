@@ -71,25 +71,6 @@ class SaveLeadTest extends TestCase
     }
 
     /** @test */
-    public function it_creates_a_phone()
-    {
-        $lead = Lead::factory()->create();
-
-        $this->assertNull($lead->phone);
-
-        $attributes = [
-            'phone.number' => $this->faker->phoneNumber,
-        ];
-
-        $returnedLead = $this->service()
-            ->setLead($lead)
-            ->fill($attributes)
-            ->save();
-
-        $this->assertNotNull($returnedLead->phone);
-    }
-
-    /** @test */
     public function it_creates_a_business()
     {
         $lead = Lead::factory()->create();

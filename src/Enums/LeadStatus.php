@@ -2,8 +2,11 @@
 
 namespace Roberts\Leads\Enums;
 
-use BenSampo\Enum\Enum;
+use MabeEnum\Enum;
 
+/**
+ * @psalm-immutable
+ */
 final class LeadStatus extends Enum
 {
     const OPEN = 'Open';

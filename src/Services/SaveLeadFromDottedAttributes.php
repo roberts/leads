@@ -69,9 +69,6 @@ class SaveLeadFromDottedAttributes implements SaveLead
                 $this->lead->{$key} = $value;
             } elseif ($this->lead->customAttributeExists($key)) {
                 $this->lead->setCustomAttribute($key, $value);
-            } elseif ($key === 'phone') {
-                $this->phone = $this->phone ?: app('phone');
-                $this->phone->fill($attributes['phone']);
             } elseif ($key === 'business') {
                 $this->business = $this->business ?: new LeadBusiness;
                 $this->business->fill($attributes['business']);
@@ -86,11 +83,6 @@ class SaveLeadFromDottedAttributes implements SaveLead
     public function save()
     {
         $this->loadProperties();
-
-        if ($this->phone) {
-            $this->phone->save();
-            $this->lead->phone_id = $this->phone->id;
-        }
 
         $this->lead->save();
 
