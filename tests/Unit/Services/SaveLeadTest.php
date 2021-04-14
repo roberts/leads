@@ -12,6 +12,7 @@ use Roberts\Leads\Models\LeadStep;
 use Roberts\Leads\Models\LeadType;
 use Roberts\Leads\Services\SaveLead;
 use Roberts\Leads\Tests\TestCase;
+use Tipoff\Addresses\Models\Country;
 
 class SaveLeadTest extends TestCase
 {
@@ -68,25 +69,6 @@ class SaveLeadTest extends TestCase
             ->save();
 
         $this->assertEquals($attributes['email'], $lead->fresh()->email);
-    }
-
-    /** @test */
-    public function it_creates_a_phone()
-    {
-        $lead = Lead::factory()->create();
-
-        $this->assertNull($lead->phone);
-
-        $attributes = [
-            'phone.full_number' => $this->faker->phoneNumber,
-        ];
-
-        $returnedLead = $this->service()
-            ->setLead($lead)
-            ->fill($attributes)
-            ->save();
-
-        $this->assertNotNull($returnedLead->phone);
     }
 
     /** @test */
