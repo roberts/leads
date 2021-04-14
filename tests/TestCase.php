@@ -8,6 +8,7 @@ use DrewRoberts\Blog\BlogServiceProvider;
 use DrewRoberts\Media\MediaServiceProvider;
 use Laravel\Nova\NovaCoreServiceProvider;
 use Livewire\LivewireServiceProvider;
+use Roberts\Leads\LeadsServiceProvider;
 use Spatie\Permission\PermissionServiceProvider;
 use Tipoff\Addresses\AddressesServiceProvider;
 use Tipoff\Authorization\AuthorizationServiceProvider;
