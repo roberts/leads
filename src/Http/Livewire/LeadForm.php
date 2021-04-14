@@ -6,6 +6,9 @@ use Livewire\Component;
 use Roberts\Leads\Models\LeadType;
 use Roberts\Leads\Services\SaveLead;
 
+/**
+ * @property-read string $activeStep
+ */
 class LeadForm extends Component
 {
     public $leadType;
