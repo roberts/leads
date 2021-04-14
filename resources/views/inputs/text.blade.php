@@ -6,12 +6,12 @@
         id="{{ $field->name }}"
     />
 
-    @error('attributes.' . $field->name) <p class="onboarding-form__error">{{ $message }}</p> @enderror
-
     <label
         for="{{ $field->name }}"
         class="onboarding-form__label"
     >
         {{ $field->label }}
     </label>
+
+    @error('attributes.' . $field->name) <p class="onboarding-form__error">{{ $message }}</p> @enderror
 </div>
