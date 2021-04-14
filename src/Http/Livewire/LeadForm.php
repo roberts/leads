@@ -13,6 +13,7 @@ class LeadForm extends Component
     protected $queryString = ['step'];
     public $attributes = [];
     public $lead;
+    public $activeStep;
 
     public function mount(LeadType $leadType)
     {
@@ -21,6 +22,8 @@ class LeadForm extends Component
         if (empty($this->step)) {
             $this->step = $this->leadType->initialStep->slug;
         }
+
+        $this->activeStep = $this->getActiveStep();
     }
 
     public function render()
@@ -53,11 +56,6 @@ class LeadForm extends Component
             ->toArray();
     }
 
-    public function getActiveStepProperty()
-    {
-        return $this->leadType->steps()->where('slug', $this->step)->first();
-    }
-
     public function getHasMoreStepsProperty()
     {
         return ! empty($this->activeStep->next());
@@ -83,5 +81,10 @@ class LeadForm extends Component
             $this->step = $step->slug;
             $this->activeStep = $step;
         }
+    }
+
+    protected function getActiveStep()
+    {
+        return $this->leadType->steps()->where('slug', $this->step)->first();
     }
 }

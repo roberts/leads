@@ -10,7 +10,7 @@
             @include('leads::inputs.' . $field->type)
         @endforeach
 
-        @if($this->activeStep->next())
+        @if($this->hasMoreSteps)
             <button
                 type="submit"
                 class="onboarding-form__next-button"
