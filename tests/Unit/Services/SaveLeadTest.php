@@ -12,7 +12,6 @@ use Roberts\Leads\Models\LeadStep;
 use Roberts\Leads\Models\LeadType;
 use Roberts\Leads\Services\SaveLead;
 use Roberts\Leads\Tests\TestCase;
-use Tipoff\Addresses\Models\Country;
 
 class SaveLeadTest extends TestCase
 {

@@ -7,7 +7,6 @@ namespace Roberts\Leads\Tests;
 use Laravel\Nova\NovaCoreServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Roberts\Leads\LeadsServiceProvider;
-use Roberts\Leads\Tests\Support\Models\Phone;
 use Spatie\Permission\PermissionServiceProvider;
 use Tipoff\Addresses\AddressesServiceProvider;
 use Tipoff\Authorization\AuthorizationServiceProvider;
