@@ -2,6 +2,7 @@
 
 namespace Roberts\Leads;
 
+use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Roberts\Leads\Http\Livewire\LeadForm;
 use Roberts\Leads\Services\GenerateLeadNumber;
@@ -17,7 +18,9 @@ class LeadsServiceProvider extends TipoffServiceProvider
     {
         parent::boot();
 
-        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        Route::group(['middleware' => 'web'], function () {
+            $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        });
 
         $this->registerLivewireComponents();
     }
