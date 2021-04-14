@@ -4,6 +4,7 @@ namespace Roberts\Leads\Tests\Unit\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Roberts\Leads\Enums\LeadFieldType;
 use Roberts\Leads\Models\LeadField;
 use Roberts\Leads\Models\LeadStep;
 use Roberts\Leads\Tests\TestCase;
@@ -43,7 +44,7 @@ class LeadFieldTest extends TestCase
     /** @test */
     public function it_has_a_type()
     {
-        $type = $this->faker->word;
+        $type = LeadFieldType::TEXT;
         $field = LeadField::factory()->create(['type' => $type]);
 
         $this->assertEquals($type, $field->type);
