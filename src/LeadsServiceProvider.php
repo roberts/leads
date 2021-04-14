@@ -17,7 +17,6 @@ class LeadsServiceProvider extends TipoffServiceProvider
     {
         parent::boot();
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'leads');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
         $this->registerLivewireComponents();
