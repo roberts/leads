@@ -18,7 +18,6 @@ class LeadsServiceProvider extends TipoffServiceProvider
     {
         parent::boot();
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'leads');
         Route::group(['middleware' => 'web'], function () {
             $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         });
