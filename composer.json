@@ -18,7 +18,7 @@
         "php": "^7.4|^8.0",
         "ext-json": "*",
         "tipoff/authorization": "^2.8",
-        "tipoff/locations": "^2.9.8",
+        "tipoff/locations": "^2.9.10",
         "tipoff/statuses": "^2.2",
         "tipoff/support": "^2.0.2"
     },
