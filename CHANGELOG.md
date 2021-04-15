@@ -24,3 +24,8 @@ All notable changes to `leads` will be documented in this file.
 - add models
 - add factories
 - model resolution via container
+
+## 2.0.1 - 2021-04-15
+
+- update routes
+- publish scss
