@@ -13,21 +13,6 @@ use Tipoff\Support\TipoffServiceProvider;
 
 class LeadsServiceProvider extends TipoffServiceProvider
 {
-    public function boot()
-    {
-        parent::boot();
-
-        $this->registerLivewireComponents();
-    }
-
-    public function register()
-    {
-        parent::register();
-
-        $this->app->bind(GenerateLeadNumber::class, GenerateLeadNumberBasedOnTime::class);
-        $this->app->bind(SaveLead::class, SaveLeadFromDottedAttributes::class);
-    }
-
     public function configureTipoffPackage(TipoffPackage $tipoffPackage): void
     {
         $tipoffPackage
@@ -36,6 +21,21 @@ class LeadsServiceProvider extends TipoffServiceProvider
             ->hasViews()
             ->name('leads')
             ->hasConfigFile();
+    }
+    
+    public function bootingPackage()
+    {
+        parent::bootingPackage();
+
+        $this->registerLivewireComponents();
+    }
+
+    public function registeringPackage()
+    {
+        parent::registeringPackage();
+
+        $this->app->bind(GenerateLeadNumber::class, GenerateLeadNumberBasedOnTime::class);
+        $this->app->bind(SaveLead::class, SaveLeadFromDottedAttributes::class);
     }
 
     protected function registerLivewireComponents()
