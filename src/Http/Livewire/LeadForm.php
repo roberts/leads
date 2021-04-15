@@ -32,7 +32,7 @@ class LeadForm extends Component
          * @psalm-suppress UndefinedMethod
          */
         return view('leads::livewire.lead-form')
-            ->extends('support::base');
+            ->extends('support::conversation');
     }
 
     protected function rules()
