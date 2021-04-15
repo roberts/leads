@@ -18,10 +18,6 @@ class LeadsServiceProvider extends TipoffServiceProvider
     {
         parent::boot();
 
-        Route::group(['middleware' => 'web'], function () {
-            $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-        });
-
         $this->registerLivewireComponents();
     }
 
@@ -36,6 +32,7 @@ class LeadsServiceProvider extends TipoffServiceProvider
     public function configureTipoffPackage(TipoffPackage $tipoffPackage): void
     {
         $tipoffPackage
+            ->hasWebRoute('web')
             ->name('leads')
             ->hasConfigFile()
             ->hasViews()
