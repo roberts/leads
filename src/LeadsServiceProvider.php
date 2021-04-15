@@ -2,7 +2,6 @@
 
 namespace Roberts\Leads;
 
-use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Roberts\Leads\Http\Livewire\LeadForm;
 use Roberts\Leads\Services\GenerateLeadNumber;
@@ -14,32 +13,29 @@ use Tipoff\Support\TipoffServiceProvider;
 
 class LeadsServiceProvider extends TipoffServiceProvider
 {
-    public function boot()
+    public function configureTipoffPackage(TipoffPackage $tipoffPackage): void
     {
-        parent::boot();
-
-        Route::group(['middleware' => 'web'], function () {
-            $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-        });
+        $tipoffPackage
+            ->hasWebRoute('web')
+            ->hasAssets()
+            ->hasViews()
+            ->name('leads')
+            ->hasConfigFile();
+    }
+    
+    public function bootingPackage()
+    {
+        parent::bootingPackage();
 
         $this->registerLivewireComponents();
     }
 
-    public function register()
+    public function registeringPackage()
     {
-        parent::register();
+        parent::registeringPackage();
 
         $this->app->bind(GenerateLeadNumber::class, GenerateLeadNumberBasedOnTime::class);
         $this->app->bind(SaveLead::class, SaveLeadFromDottedAttributes::class);
-    }
-
-    public function configureTipoffPackage(TipoffPackage $tipoffPackage): void
-    {
-        $tipoffPackage
-            ->name('leads')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasAssets();
     }
 
     protected function registerLivewireComponents()
