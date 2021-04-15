@@ -17,15 +17,16 @@ class LeadsServiceProvider extends TipoffServiceProvider
     {
         $tipoffPackage
             ->hasWebRoute('web')
-            ->hasAssets()
             ->hasViews()
             ->name('leads')
             ->hasConfigFile();
     }
-    
+
     public function bootingPackage()
     {
         parent::bootingPackage();
+
+        $this->publishStyles();
 
         $this->registerLivewireComponents();
     }
@@ -36,6 +37,13 @@ class LeadsServiceProvider extends TipoffServiceProvider
 
         $this->app->bind(GenerateLeadNumber::class, GenerateLeadNumberBasedOnTime::class);
         $this->app->bind(SaveLead::class, SaveLeadFromDottedAttributes::class);
+    }
+
+    public function publishStyles()
+    {
+        $this->publishes([
+            __DIR__.'/../resources/scss/' => resource_path('scss/vendor/leads'),
+        ], 'styles');
     }
 
     protected function registerLivewireComponents()
