@@ -29,7 +29,7 @@ class LeadForm extends Component
     public function render()
     {
         /**
-         * @psalm-info UndefinedMethod
+         * @psalm-suppress UndefinedMethod
          */
         return view('leads::livewire.lead-form')
             ->layout('leads::layout');
