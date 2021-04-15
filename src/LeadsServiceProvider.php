@@ -31,11 +31,11 @@ class LeadsServiceProvider extends TipoffServiceProvider
     public function configureTipoffPackage(TipoffPackage $tipoffPackage): void
     {
         $tipoffPackage
-            ->hasAssets()
             ->hasWebRoute('web')
+            ->hasAssets()
+            ->hasViews()
             ->name('leads')
-            ->hasConfigFile()
-            ->hasViews();
+            ->hasConfigFile();
     }
 
     protected function registerLivewireComponents()
