@@ -3,6 +3,7 @@
 namespace Roberts\Leads\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -49,6 +50,10 @@ class LeadField extends BaseResource
                     LeadFieldType::TEXTAREA => 'textarea',
                 ])
                 ->required(),
+
+            BelongsTo::make('Step', 'leadStep')
+                ->required()
+                ->sortable(),
         ];
     }
 }
