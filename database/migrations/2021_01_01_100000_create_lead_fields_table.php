@@ -15,6 +15,7 @@ class CreateLeadFieldsTable extends Migration
             $table->string('name');
             $table->string('rules');
             $table->string('type');
+            $table->unsignedInteger('position');
             $table->foreignIdFor(LeadStep::class);
             $table->timestamps();
         });

@@ -51,6 +51,15 @@ class LeadFieldTest extends TestCase
     }
 
     /** @test */
+    public function it_has_a_position()
+    {
+        $position = $this->faker->randomNumber;
+        $field = LeadField::factory()->create(['position' => $position]);
+
+        $this->assertEquals($position, $field->position);
+    }
+
+    /** @test */
     public function it_belongs_to_a_step()
     {
         $field = LeadField::factory()->create();
