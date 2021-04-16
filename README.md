@@ -20,12 +20,14 @@ You can publish the config file with:
 php artisan vendor:publish --provider="Roberts\Leads\LeadsServiceProvider" --tag="leads-config"
 ```
 
-This is the contents of the published config file:
+Publish the SCSS files:
 
-```php
-return [
-];
+```bash
+php artisan vendor:publish --provider="Roberts\Leads\LeadsServiceProvider" --tag="styles"
 ```
+
+Now import the published SCSS file into your main SCSS.
+
 ## Models
 
 We include the following model in this package:
