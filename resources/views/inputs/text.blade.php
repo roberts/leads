@@ -1,17 +1,17 @@
-<div class="onboarding-form__block-group">
+<div class="lead-form__block-group">
     <input
         type="text"
         wire:model="attributes.{{ $field->name }}"
-        class="onboarding-form__text-input @if(!empty($attributes[$field->name])) onboarding-form__text-input--filled @endif"
+        class="lead-form__text-input @if(!empty($attributes[$field->name])) lead-form__text-input--filled @endif"
         id="{{ $field->name }}"
     />
 
     <label
         for="{{ $field->name }}"
-        class="onboarding-form__label"
+        class="lead-form__label"
     >
         {{ $field->label }}
     </label>
 
-    @error('attributes.' . $field->name) <p class="onboarding-form__error">{{ $message }}</p> @enderror
+    @error('attributes.' . $field->name) <p class="lead-form__error">{{ $message }}</p> @enderror
 </div>

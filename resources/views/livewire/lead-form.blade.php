@@ -1,7 +1,7 @@
-<div class="onboarding-form">
-    <div class="onboarding-form__lead-heading">{{ $leadType->name }}</div>
+<div class="lead-form">
+    <div class="lead-form__lead-heading">{{ $leadType->name }}</div>
 
-    <h3 class="onboarding-form__step-heading">
+    <h3 class="lead-form__step-heading">
         {{ $this->activeStep->title }}
     </h3>
 
@@ -13,7 +13,7 @@
         @if($this->hasMoreSteps)
             <button
                 type="submit"
-                class="onboarding-form__next-button"
+                class="lead-form__next-button"
             >
                 Next
             </button>
