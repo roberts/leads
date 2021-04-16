@@ -4,9 +4,15 @@ namespace Roberts\Leads;
 
 use Livewire\Livewire;
 use Roberts\Leads\Http\Livewire\LeadForm;
-use Roberts\Leads\Nova\LeadField;
-use Roberts\Leads\Nova\LeadStep;
-use Roberts\Leads\Nova\LeadType;
+use Roberts\Leads\Models\LeadField;
+use Roberts\Leads\Models\LeadStep;
+use Roberts\Leads\Models\LeadType;
+use Roberts\Leads\Nova\LeadField as LeadFieldResource;
+use Roberts\Leads\Nova\LeadStep as LeadStepResource;
+use Roberts\Leads\Nova\LeadType as LeadTypeResource;
+use Roberts\Leads\Policies\LeadFieldPolicy;
+use Roberts\Leads\Policies\LeadStepPolicy;
+use Roberts\Leads\Policies\LeadTypePolicy;
 use Roberts\Leads\Services\GenerateLeadNumber;
 use Roberts\Leads\Services\GenerateLeadNumberBasedOnTime;
 use Roberts\Leads\Services\SaveLead;
@@ -19,10 +25,15 @@ class LeadsServiceProvider extends TipoffServiceProvider
     public function configureTipoffPackage(TipoffPackage $tipoffPackage): void
     {
         $tipoffPackage
+            ->hasPolicies([
+                LeadField::class => LeadFieldPolicy::class,
+                LeadStep::class => LeadStepPolicy::class,
+                LeadType::class => LeadTypePolicy::class,
+            ])
             ->hasNovaResources([
-                LeadField::class,
-                LeadStep::class,
-                LeadType::class,
+                LeadFieldResource::class,
+                LeadStepResource::class,
+                LeadTypeResource::class,
             ])
             ->hasWebRoute('web')
             ->hasViews()
