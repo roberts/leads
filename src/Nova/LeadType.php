@@ -19,22 +19,21 @@ class LeadType extends BaseResource
         'name', 'slug',
     ];
 
-    public function fieldsForIndex(NovaRequest $request)
-    {
-        return [
-            ID::make()->sortable(),
-            Text::make('Name')->sortable(),
-            Text::make('Slug')->sortable(),
-        ];
-    }
-
     public function fields(Request $request)
     {
         return [
-            ID::make(),
-            Text::make('Name')->required(),
-            Text::make('Slug'),
-            HasMany::make('Steps'),
+            ID::make()
+                ->sortable(),
+
+            Text::make('Name')
+                ->sortable()
+                ->required(),
+
+            Text::make('Slug')
+                ->sortable(),
+
+            HasMany::make('Steps')
+                ->onlyOnDetail(),
         ];
     }
 }
