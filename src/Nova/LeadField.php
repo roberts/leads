@@ -45,9 +45,9 @@ class LeadField extends BaseResource
             Select::make('Type')
                 ->sortable()
                 ->options([
-                    LeadFieldType::TEXT => 'text',
-                    LeadFieldType::NUMBER => 'number',
-                    LeadFieldType::TEXTAREA => 'textarea',
+                    LeadFieldType::TEXT => 'Text',
+                    LeadFieldType::NUMBER => 'Number',
+                    LeadFieldType::TEXTAREA => 'Textarea',
                 ])
                 ->required(),
 
