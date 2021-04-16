@@ -14,7 +14,7 @@ class LeadStepFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
-            'number' => $this->faker->randomNumber,
+            'number' => $this->faker->unique()->randomNumber,
             'lead_type_id' => LeadType::factory(),
         ];
     }

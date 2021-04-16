@@ -18,6 +18,8 @@ class CreateLeadFieldsTable extends Migration
             $table->unsignedInteger('position');
             $table->foreignIdFor(LeadStep::class);
             $table->timestamps();
+
+            $table->unique(['position', 'lead_step_id']);
         });
     }
 }
