@@ -29,3 +29,7 @@ All notable changes to `leads` will be documented in this file.
 
 - update routes
 - publish scss
+
+## 2.0.2 - 2021-04-15
+
+- extend conversation skeleton structure
