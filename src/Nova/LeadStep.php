@@ -26,11 +26,23 @@ class LeadStep extends BaseResource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-            Text::make('Title')->sortable()->required(),
-            Text::make('Slug')->sortable(),
-            Number::make('Number')->sortable()->required(),
-            BelongsTo::make('Lead Type')->sortable(),
+            ID::make()
+                ->sortable(),
+
+            Text::make('Title')
+                ->sortable()
+                ->required(),
+
+            Text::make('Slug')
+                ->sortable(),
+
+            Number::make('Number')
+                ->sortable()
+                ->required(),
+
+            BelongsTo::make('Lead Type')
+                ->required()
+                ->sortable(),
         ];
     }
 }
