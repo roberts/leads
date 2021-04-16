@@ -20,7 +20,7 @@ class LeadFieldFactory extends Factory
             'label' => strtoupper($name),
             'rules' => 'nullable',
             'type' => LeadFieldType::TEXT,
-            'position' => $this->faker->numberBetween(1, 10),
+            'position' => $this->faker->unique()->randomNumber,
             'lead_step_id' => LeadStep::factory(),
         ];
     }
