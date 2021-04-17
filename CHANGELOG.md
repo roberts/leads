@@ -37,3 +37,10 @@ All notable changes to `leads` will be documented in this file.
 ## 2.0.3 - 2021-04-16
 
 - update styles
+
+## 2.1.0 - 2021-04-17
+
+- add policies
+- register policies
+- migrate permissions
+- grant permissions to roles
