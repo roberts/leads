@@ -4,12 +4,16 @@ namespace Roberts\Leads;
 
 use Livewire\Livewire;
 use Roberts\Leads\Http\Livewire\LeadForm;
+use Roberts\Leads\Models\Lead;
+use Roberts\Leads\Models\LeadBusiness;
 use Roberts\Leads\Models\LeadField;
 use Roberts\Leads\Models\LeadStep;
 use Roberts\Leads\Models\LeadType;
 use Roberts\Leads\Nova\LeadField as LeadFieldResource;
 use Roberts\Leads\Nova\LeadStep as LeadStepResource;
 use Roberts\Leads\Nova\LeadType as LeadTypeResource;
+use Roberts\Leads\Policies\LeadPolicy;
+use Roberts\Leads\Policies\LeadBusinessPolicy;
 use Roberts\Leads\Policies\LeadFieldPolicy;
 use Roberts\Leads\Policies\LeadStepPolicy;
 use Roberts\Leads\Policies\LeadTypePolicy;
@@ -26,6 +30,8 @@ class LeadsServiceProvider extends TipoffServiceProvider
     {
         $tipoffPackage
             ->hasPolicies([
+                Lead::class => LeadPolicy::class,
+                LeadBusiness::class => LeadBusinessPolicy::class,
                 LeadField::class => LeadFieldPolicy::class,
                 LeadStep::class => LeadStepPolicy::class,
                 LeadType::class => LeadTypePolicy::class,
