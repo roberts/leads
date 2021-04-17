@@ -18,6 +18,7 @@ class CreateLeadStepsTable extends Migration
             $table->timestamps();
 
             $table->unique(['slug', 'lead_type_id']);
+            $table->unique(['number', 'lead_type_id']);
         });
     }
 }

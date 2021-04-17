@@ -72,19 +72,19 @@ class LeadFormTest extends TestCase
     }
 
     /** @test */
-    public function it_shows_all_fields_attached_to_the_active_step()
+    public function it_shows_all_fields_attached_to_the_active_step_in_order()
     {
         $leadType = $this->setUpLeadType();
         $step = $leadType->steps->random();
-        $fields = $step->fields;
 
-        $livewire = Livewire::withQueryParams(['step' => $step->slug])
-            ->test(LeadForm::class, ['leadType' => $leadType]);
+        $labels = $step->fields
+            ->sortBy('position')
+            ->pluck('label')
+            ->toArray();
 
-        $fields->each(function ($field) use ($livewire) {
-            $livewire->assertSee($field->label)
-                ->assertSeeHtml('type="' . $field->type . '"');
-        });
+        Livewire::withQueryParams(['step' => $step->slug])
+            ->test(LeadForm::class, ['leadType' => $leadType])
+            ->assertSeeInOrder($labels);
     }
 
     /** @test */
@@ -210,7 +210,7 @@ class LeadFormTest extends TestCase
                 ]);
 
             LeadField::factory()
-                ->count(2)
+                ->count(3)
                 ->create(['lead_step_id' => $step->id]);
         }
 

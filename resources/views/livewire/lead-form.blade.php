@@ -6,7 +6,7 @@
     </h3>
 
     <form wire:submit.prevent="submit">
-        @foreach($this->activeStep->fields as $field)
+        @foreach($this->activeStep->fields->sortBy('position') as $field)
             @include('leads::inputs.' . $field->type)
         @endforeach
 
