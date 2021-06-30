@@ -44,3 +44,7 @@ All notable changes to `leads` will be documented in this file.
 - register policies
 - migrate permissions
 - grant permissions to roles
+
+## 2.1.1 - 2021-06-30
+
+- update depenencies
