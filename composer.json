@@ -17,13 +17,13 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-json": "*",
-        "tipoff/authorization": "^2.8.4",
-        "tipoff/locations": "^2.10.1",
-        "tipoff/statuses": "^2.2",
-        "tipoff/support": "^2.1.3"
+        "tipoff/authorization": "^2.10.0",
+        "tipoff/locations": "^2.14.1",
+        "tipoff/statuses": "^2.2.1",
+        "tipoff/support": "^2.2.0"
     },
     "require-dev": {
-        "tipoff/test-support": "^2.0"
+        "tipoff/test-support": "^2.0.1"
     },
     "autoload": {
         "psr-4": {
