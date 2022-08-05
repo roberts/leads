@@ -4,7 +4,7 @@
 ![Tests](https://github.com/roberts/leads/workflows/Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/roberts/leads.svg?style=flat-square)](https://packagist.org/packages/roberts/leads)
 
-This is where your description should go.
+Package for lead generation in Laravel with dynamic forms & questions.
 
 ## Installation
 
