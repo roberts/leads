@@ -4,7 +4,7 @@
 ![Tests](https://github.com/roberts/leads/workflows/Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/roberts/leads.svg?style=flat-square)](https://packagist.org/packages/roberts/leads)
 
-Package for lead generation in Laravel with dynamic forms & questions.
+Package for lead generation in Laravel with dynamic forms & questions. Primarily used for business leads.
 
 ## Installation
 
