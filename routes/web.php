@@ -6,5 +6,5 @@ use Roberts\Leads\Http\Livewire\LeadForm;
 Route::middleware(config('tipoff.web.middleware_group'))
     ->prefix(config('tipoff.web.uri_prefix'))
     ->group(function () {
-        Route::get('{leadType}', LeadForm::class);
+        Route::get('/quotes/{leadType}', LeadForm::class);
     });
