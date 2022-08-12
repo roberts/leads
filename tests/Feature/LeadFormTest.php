@@ -33,7 +33,7 @@ class LeadFormTest extends TestCase
     // public function it_shows_the_lead_form_component()
     // {
     //     $leadType = $this->setUpLeadType();
-    // 
+    //
     //     $this->get($leadType->getRouteKey())
     //         ->assertOk()
     //         ->assertSeeLivewire('lead-form');
