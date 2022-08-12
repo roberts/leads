@@ -36,7 +36,7 @@ class LeadFormTest extends TestCase
 
         $this->get($leadType->getRouteKey())
             ->assertOk()
-            ->assertSeeLivewire('lead-form');
+            ->assertSeeLivewire('quotes/lead-form');
     }
 
     /** @test */
