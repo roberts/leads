@@ -43,3 +43,5 @@ $config
         'single_trait_insert_per_statement' => true,
     ])
     ->setFinder($finder);
+
+return $config;
