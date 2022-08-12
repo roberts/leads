@@ -48,3 +48,7 @@ All notable changes to `leads` will be documented in this file.
 ## 2.1.1 - 2021-06-30
 
 - update dependencies
+
+## 2.1.2 - 2022-08-12
+
+- change route
