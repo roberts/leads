@@ -56,3 +56,7 @@ All notable changes to `leads` will be documented in this file.
 ## 2.1.3 - 2022-08-17
 
 - update lead permissions migration
+
+## 2.1.4 - 2022-08-17
+
+- reorder lead permissions migration
