@@ -13,3 +13,7 @@ package-lock.json
 phpunit.xml
 psalm.xml
 vendor
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
